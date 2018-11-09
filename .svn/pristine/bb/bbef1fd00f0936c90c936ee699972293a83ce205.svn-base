@@ -1,0 +1,155 @@
+<view style="padding:20px;">
+  <view class="main-title">
+    关于赁类
+  </view>
+  <view class="con">
+    <view class="title">
+       	需要交纳押金么？
+    </view>
+    <view class="content">
+     您所需的押金冻结额=全额押金-免押额度，只是临时冻结一部分额度，并不产生实际消费。
+      <view></view>
+赁类会根据您的芝麻信用综合评估您的免押额度，如果额度足够，您可以免全部押金。若有不足的部分，也可以通过冻结您的支付宝余额、余额宝、借记卡等资金账号来完成，在租期结束顺利归还设备后，即可完全解冻。
+
+    </view>
+  </view>
+   <view class="con">
+    <view class="title">
+    	月租如何支付？
+    </view>
+    <view class="content">
+只要您开通了支付宝免密支付，赁类每月按照您设定的扣款顺序，自动从您支付宝账号扣除相应租金，支持花呗、信用卡、支付宝余额、余额宝、借记卡等。
+
+    </view>
+  </view>
+   <view class="con">
+    <view class="title">
+     	 	邮寄费谁出？
+    </view>
+    <view class="content">
+      邮寄费的承担原则是谁寄谁出。
+ 
+    </view>
+  </view>
+   <view class="con">
+    <view class="title">
+     	合约到期忘记归还怎么办？逾期支付会产生什么费用？
+    </view>
+    <view class="content">
+     我们会在合约到期前的数个自然日以多种形式提醒您归还，您需要在合约到期后3个自然日内归还，如超期会产生逾期费用，逾期费用按租赁物总价值的万分之五/日计算。
+    </view>
+  </view>
+
+     <view class="con">
+    <view class="title">
+     	 	租期到期怎么办？
+    </view>
+    <view class="content">
+     您可以选择：归还、续租、买断。
+     <view>
+（1）如果您选择归还：您可以邮寄给赁类，并注明您的姓名和联系电话。
+
+     </view>
+     <view>
+（2）如果您选择续租：续租租金会有一定优惠，以续租时平台显示的续租价为准。
+
+</view>
+<view >
+（3）如果您选择买断：买断费=商品价值*1.12-已付租金之和。
+
+  
+</view>
+
+    </view>
+  </view>
+
+    <view class="con">
+    <view class="title">
+     	合约到期忘记归还怎么办？逾期支付会产生什么费用？
+    </view>
+    <view class="content">
+     我们会在合约到期前的数个自然日以多种形式提醒您归还，您需要在合约到期后3个自然日内归还，如超期会产生逾期费用，逾期费用按租赁物总价值的万分之五/日计算。
+    </view>
+  </view>
+
+
+
+  <view class="con">
+    <view class="title">
+      	产品质量有保障吗？
+    </view>
+    <view class="content">
+   全新设备：均来自官方渠道，正品国行，新机无拆包。产品质量问题，可享受厂家官方售后政策。
+      <view></view>
+二手设备：是经过赁类专业检测的正品国行，赁类提供全程售后维修服务。
+    </view>
+  </view>
+
+    <view class="con">
+    <view class="title">
+     	如果意外碎屏怎么办？
+    </view>
+    <view class="content">
+     购买商品时需要购买一份意外保障服务，手机因意外跌落、碰撞、外力挤压等造成的意外碎屏，可申请启动一次免赔服务，使用后可再次购买相同服务。详见意外保障服务条款。
+    </view>
+  </view>
+      <view class="con">
+    <view class="title">
+     	
+ 	还机后，我的隐私如何保障？
+    </view>
+    <view class="content">
+我们有专业工程师对每一部归还的手机进行深度数据清理和销毁技术，彻底恢复出厂设置，保障用户的绝对隐私安全，让用户无忧。
+      <view></view>
+     购买商品时需要购买一份意外保障服务，手机因意外跌落、碰撞、外力挤压等造成的意外碎屏，可申请启动一次免赔服务，使用后可再次购买相同服务。详见意外保障服务条款。
+<view></view>
+    </view>
+  </view>
+      <view class="con">
+    <view class="title">
+ 	收货必须由本人签收么？
+       
+    </view>
+    <view class="content">
+     是的，快递小哥会核实您本人身份证原件。您还需提供一张身份证正反面复印件交给快递小哥寄回赁类存档。
+    </view>
+  </view>
+      <view class="con">
+    <view class="title">
+      	起租时间怎么算？
+    </view>
+    <view class="content">
+    从物流显示您签收商品的时间T+1日的00:00点开始。
+    </view>
+  </view>
+      <view class="con">
+    <view class="title">
+     	租赁期内可以更换机型和租期么？
+    </view>
+    <view class="content">
+    租赁期内，承租人不可更换机型，不可更改租期。
+    </view>
+  </view>
+       <view class="con">
+    <view class="title">
+     	如何取消订单？
+    </view>
+    <view class="content">
+未完成支付的用户可联系赁类客服取消订单，客服电话为400 862 5151。
+
+    </view>
+  </view>
+
+
+
+
+
+
+
+</view>
+
+
+
+
+ 
+

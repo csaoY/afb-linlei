@@ -1,0 +1,54 @@
+var idx;
+Page({
+  data: {
+    pvShow:false,
+    arr1:["上门取件","快递"],//归还方式数组
+    idx:0//归还方式的index值
+  },
+  onLoad() {
+
+  },
+  onShow(){
+    const that=this;
+    my.getStorage({
+  key: 'address',
+  success: function(res) {
+   that.setData({
+     address:res.data
+   })
+   console.log(res.data)
+   console.log('hahahh')
+  },
+  fail: function(res){
+    return;
+  }
+});
+  },
+  onChange(e) {
+    console.log(e.detail.value[0]);
+    idx=e.detail.value[0]
+  },
+  showPv:function(){
+    console.log(1)
+    this.setData({
+      pvShow:true,
+    })
+  },
+  hidePv:function(){
+    this.setData({
+      pvShow:false,
+    })
+  },
+  selectArea(){
+    my.navigateTo({
+      url:"../selectArea/selectArea"
+    });
+  },
+  ok(){
+    this.setData({
+      idx
+    })
+    this.hidePv()
+    
+  }
+});

@@ -1,0 +1,113 @@
+
+ <view style="padding:0 30px;text-align:center;padding-top:120px;"a:if="{{list.length==0&&loaded==true&&err==false?true:false}}">
+  <image src="/img/noorder.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;color:#666">目前暂无订单</view>
+  <view class="long-btn"  style="background:#00c0a3" onTap="backToIndex">返回首页</view>
+</view>
+ <view style="padding:0 30px;text-align:center;padding-top:120px;" a:if="{{err==true?true:false}}">
+  <image src="/img/error.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;color:#666">系统异常，请重试</view>
+  <view class="long-btn" style="background:#00c0a3" onTap="redo">重试</view>
+</view>
+
+  <view class="tab" a:if="{{showNav}}" >
+    <view data-state="1"  onTap="getList" data-idx="0"  class="{{currentIndex==0?'active':''}}">
+      <text>全部</text>
+      </view>
+    <view onTap="getList" data-state="2" data-idx="1"  class="{{currentIndex==1?'active':''}}"> <text>进行中</text></view>
+    <view onTap="getList" data-state="3" data-idx="2" class="{{currentIndex==2?'active':''}}"> <text>已取消</text></view>
+    <view onTap="getList" data-state="4" data-idx="3" class="{{currentIndex==3?'active':''}}"> <text>已完成</text></view>
+  </view>
+<view a:if="{{(list.length>0&&loaded==true&&err==false)?true:false}}" style="padding-top:44px;">
+  <!--
+   <view class="tab">
+    <view data-state="1"  onTap="getList" data-idx="0"  class="{{currentIndex==0?'active':''}}">
+      <text>全部</text>
+      </view>
+    <view onTap="getList" data-state="2" data-idx="1"  class="{{currentIndex==1?'active':''}}"> <text>进行中</text></view>
+    <view onTap="getList" data-state="3" data-idx="2" class="{{currentIndex==2?'active':''}}"> <text>已取消</text></view>
+    <view onTap="getList" data-state="4" data-idx="3" class="{{currentIndex==3?'active':''}}"> <text>已完成</text></view>
+  </view>-->
+
+ <block  a:for="{{list}}"  > 
+
+  <view class="order" a:if="{{item.orderStatus=='NEW'?false:true}}" data-orderId="{{item.orderId}}"  data-orderStatus="{{item.orderStatus}}" onTap="toOrderDeteil">
+    <view class="order-header">
+      <view>{{item.created}}</view>
+      <view class="state" a:if="{{item.orderStatus=='CHECK'?true:false}}">待发货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='UNDELIVERY'?true:false}}">待发货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='DELIVERY'?true:false}}">待收货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='SIGN'?true:false}}">租用中</view>
+        <view class="state" a:if="{{item.orderStatus=='CANCEL'?true:false}}">已取消</view>
+        <view class="state" a:if="{{item.orderStatus=='FULFIL'?true:false}}">已完成</view>
+         <view class="state" a:if="{{item.orderStatus=='RETURN'?true:false}}">还机中</view>
+    </view>
+    <view class="order-body">
+      <view class="img-wrapper">
+        <image src="{{imgsrc+item.thumbImg}}" mode="widthFix" />
+      </view>
+      <view class="body-right">
+        <view class="title">{{item.goodsName}}</view>
+        <view class="guige">规格：{{item.specifications}}</view>
+        <view class="rent">租金：￥{{item.totalRent}}</view>
+         <view  a:if="{{item.exemptedAmount==0?false:true}}">
+           <image src="/img/zhima-logo.png" class="zhima-logo" mode="widthFix" />
+         </view>
+      </view>
+    </view>
+    <view class="order-foot clear">
+      <view  a:if="{{(item.orderStatus=='CHECK'?true:false)||(item.orderStatus=='PROCESSING'&&item.deliveryStatus=='UNDELIVERY'?true:false)?true:false}}" catchTap="cancelOrder" data-orderId="{{item.orderId}}">取消订单</view>
+        <view  a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='DELIVERY'?true:false}}" type="default" size="defaultSize" catchTap="toObtain"  data-orderId="{{item.orderId}}">查看物流 </view>
+  <view type="default" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='SIGN'?true:false}}" size="defaultSize" catchTap="toBill" data-orderId="{{item.orderId}}">查看账单 </view>
+  <view type="default"  a:if="{{item.repaymentType==2&&item.orderStatus=='PROCESSING' ?true:false}}" style="background:#0dd7aa;color:#fff;"   data-name="{{item.goodsName}}" data-guige="{{item.specifications}}" data-src="{{imgsrc}}" data-img="{{item.thumbImg}}"  size="defaultSize" catchTap="back" data-orderNo="{{item.orderNo}}">申请还机 </view>
+  <view catchTap="call"  a:if="{{item.orderStatus=='CANCEL'||item.orderStatus=='RETURN'?true:false}}">联系客服</view>
+  
+  <view type="default" size="defaultSize" 
+   style="background:#0dd7aa;color:#fff;"  a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='DELIVERY'?true:false}}" catchTap="collectGood" data-orderId="{{item.orderId}}">确认收货 </view>
+  </view>
+    </view>
+  </view>
+</block>
+
+
+
+
+
+
+
+
+
+</view>
+
+<view class="bg" a:if="{{cancel||collectBox}}"></view>
+<view class="alert-box" a:if="{{cancel}}">
+  <view class="title">取消订单</view>
+  <view class="content">
+    <view class="why">取消原因</view>
+    <block a:for="{{cancelOrderReason}}">
+     <view class="list"  onTap="selectReason" data-index="{{index}}">
+      <view class="one {{reasonIdx==index?'active':''}}"></view>
+      <view class="two">{{item}}</view>
+    </view>
+    </block>
+  </view>
+  <view class="footer-option">
+    <view class="btn" onTap="cancelcancel">再考虑下</view>
+    <view class="btn" onTap="confirmcancel">取消订单</view>
+  </view>
+</view>
+
+
+
+<view class="alert-box" a:if="{{collectBox}}">
+  <view class="title">确认收货</view>
+  <view class="content">
+    请确认已收到商品，确认收货后我们将进行租金计算
+  </view>
+  <view class="footer-option">
+    <view class="btn" onTap="cancelCollect">取消</view>
+    <view class="btn" onTap="confirmCollect">确认</view>
+  </view>
+</view>
+
+

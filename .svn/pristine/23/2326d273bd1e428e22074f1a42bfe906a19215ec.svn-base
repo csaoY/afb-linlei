@@ -1,0 +1,39 @@
+import util from '/utils/util'
+import urls from '/utils/urls'
+import network from '/utils/network'
+Page({
+  data: {
+     item: {
+      index: 0,
+      msg: 'this is a template',
+      time: '2016-09-15'
+    }
+  },
+  onLoad(option) {
+    this.getInfo(option.orderId)
+
+  },
+  getInfo(orderId){
+      const myparams =new Object();
+      myparams.orderId=orderId
+  network.post({
+     url: urls.obtainExpressInfo,
+     params: myparams,
+     success: (data) => {
+       console.log(data.result)
+       let list=data.result||[];
+       for(var i=0;i<list.length;i++){
+         list[i].time=list[i].time.split(" ")
+       }
+       this.setData({
+         list
+       })
+  //that.orderList();  
+  },
+   fail:(data)=>{
+
+   }
+ 
+  })
+  }
+});

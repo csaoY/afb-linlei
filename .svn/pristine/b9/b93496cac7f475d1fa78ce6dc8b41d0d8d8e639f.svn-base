@@ -1,0 +1,51 @@
+<view>
+  <view class="top">
+    <image src="/img/success.png" mode="widthFix" />
+    <view style="font-size:18px;margin-top:10px;">恭喜你下单成功</view>
+    <view class="sec">我们将尽快为你配送</view>
+    <view> 
+      <image src="/img/mianya.png" mode="widthFix" />
+    </view>
+  </view>
+  <view class="bar"></view>
+  <view class="box-wrapper">
+    <view class="box-list"  style="color:#333">
+      <view>月租金</view>
+      <view><text style="font-size:10px;">￥</text>{{amount}}</view>
+    </view>
+     <view class="box-list">
+      <view>租期</view>
+      <view>{{installmentDate}}</view>
+    </view>
+    <view class="box-list">
+      <view>月租金将于次月通过支付宝代扣的方式还款</view>
+    </view>
+  </view>
+
+
+
+   <view class="box-wrapper">
+    <view class="box-list">
+      <view>总押金</view>
+      <view><text style="font-size:10px;">￥</text>{{deposit}}</view>
+    </view>
+     <view class="box-list"   style="color:#333" v-if="{{credit_amount*1>0?true:false}}">
+      <view>芝麻信用免押金</view>
+      <view><text style="font-size:10px;">-￥</text>{{credit_amount}}</view>
+    </view>
+    <view class="box-list"   style="color:#333"  v-if="{{credit_amount*1>0?true:false}}">
+      <view>已冻结押金</view>
+      <view><text style="font-size:10px;">￥</text>{{(deposit-credit_amount).toFixed(2)}}</view>
+    </view>
+  </view>
+
+
+  <view class="btn-wrapper">
+    <button type="default" size="defaultSize" onTap="toOrder"> 查看订单 </button>
+    <button type="default" size="defaultSize" onTap="toLinlei"> 返回首页 </button>
+  </view>
+  <view class="footer">
+    <image src="/img/logo.png" mode="widthFix" />
+  </view>
+  
+</view>

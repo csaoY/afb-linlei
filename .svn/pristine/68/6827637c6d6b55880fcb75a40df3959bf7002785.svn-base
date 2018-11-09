@@ -1,0 +1,104 @@
+<view>
+  <view class="header">
+
+    <view class="state">
+        <image src="/img/fahuo.png" mode="widthFix" />
+        待发货
+      </view>
+<view class="other-wrapper">
+   <view class="daoyu">订单已推送给商家备货，请耐心等待</view>
+      <view class="time">2017年11月25日09：30</view>
+</view>
+     
+
+    
+     <view class="user-info">
+    <view class="title">
+      陈美凤 <text class="number">15487454125</text>
+    </view>
+    <view class="adress-wrapper">
+      <image src="/img/adress.png" mode="widthFix" />
+      <view class="adress">湖南省常德市临澧县河口镇安福小区1号909</view>
+      <view class="notice">*如需修改地址，请取消订单，就看了撒旦教更垃圾狗</view>
+    </view>
+  </view>
+</view>
+
+
+ <view class="good-info">
+    <view class="img-wrapper">
+      <image src="/img/phone.png" mode="widthFix" style="width:60px;height:60px;" />
+    </view>
+    <view class="detail">
+      <view class="title">苹果手机</view>
+      <view class="guige">
+        规格：亮黑色
+      </view>
+      <view class="rent">总租金：898.00</view>
+      <view class="zhima">芝麻信用.免押金</view>
+    </view>
+  </view>
+
+  <view class="bot">
+  <button type="default" size="defaultSize" onTap="defaultTap">查看订单 </button>
+  <button type="default" size="defaultSize" onTap="defaultTap">查看账单 </button>
+  <button type="default" size="defaultSize" onTap="defaultTap">取消订单 </button>
+  <button type="default" size="defaultSize" onTap="defaultTap"
+   style="background:#0dd7aa;color:#fff;" onTap="collectGood">确认收货 </button>
+  </view>
+</view>
+<view class="bg" a:if="{{false}}"></view>
+<view class="alert-box" a:if="{{false}}">
+  <view class="title">确认收货</view>
+  <view class="content">确认收货的流程以及其他问题哈哈哈哈哈哈哈哈哈哈哈哈或</view>
+  <view class="footer-option">
+    <view class="btn">取消</view>
+    <view class="btn">确认</view>
+  </view>
+</view>
+<view class="alert-box" a:if="{{false}}">
+  <view class="title">支付宝免密支付</view>
+  <view class="content">确认收货的流程以及其他问题哈哈哈哈哈哈哈哈哈哈哈哈或</view>
+  <view class="close-alert">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+<view class="alert-box" a:if="{{false}}">
+  <view class="title">取消订单</view>
+  <view class="content">
+    <view class="why">取消原因</view>
+    <view class="list">
+      <view class="one"></view>
+      <view class="two">想要重新下单</view>
+    </view>
+     <view class="list">
+      <view class="one"></view>
+      <view class="two">想要重新下单</view>
+    </view>
+     <view class="list">
+      <view class="one"></view>
+      <view class="two">想要重新下单</view>
+    </view>
+     <view class="list">
+      <view class="one"></view>
+      <view class="two">想要重新下单</view>
+    </view>
+     <view class="list">
+      <view class="one"></view>
+      <view class="two">想要重新下单</view>
+    </view>
+     <view class="list">
+      <view class="one"></view>
+      <view class="two">想要重新下单</view>
+    </view>
+     <view class="list">
+      <view class="one"></view>
+      <view class="two">想要重新下单</view>
+    </view>
+
+  </view>
+  <view class="footer-option">
+    <view class="btn">取消</view>
+    <view class="btn">确认</view>
+  </view>
+</view>

@@ -1,0 +1,80 @@
+page{
+    background:#f5f5f5;
+}
+.header{
+    background-image: linear-gradient(to right,#138ea9, #0dd7aa);
+    padding:17px 0 5px 0;
+}
+.header>.state{
+    font-size:18px;color:#fff;font-weight:bold;display:flex;
+    padding:0 30rpx 0 30rpx;
+}
+.header>.state>image{
+    width:25px;margin-right:5px;vertical-align: middle;
+}
+.header>.other-wrapper{
+     padding:0 30rpx 0 30rpx;
+}
+.header>.other-wrapper>.daoyu{
+    font-size:14px;color:#fff;margin-top:10px;
+}
+.header>.other-wrapper>.time{
+    font-size:14px;color:#80ffff;font-weight:bold;margin-top:30px;
+}
+.header>.info{
+    padding:20px 30rpx 17px 30rpx;
+}
+.user-info{
+    padding:16px 30rpx;background: #fff;margin-top:20px;
+}
+.user-info>.title{
+    font-size:16px;
+}
+.user-info>.title>text{
+    margin-left:20px;
+}
+.user-info>.adress-wrapper{
+    padding-left:20px;
+    position:relative;
+}
+    .user-info>.adress-wrapper>image{
+        width:12px;position: absolute;left:0;top:0;top:4px;
+    }
+.user-info>.adress-wrapper>.adress{
+    font-size:14px;color:#888;line-height:1.5;margin-top:10px;
+}
+.user-info>.adress-wrapper>.notice{
+    font-size:10px;color:#999;margin-top:7px;
+}
+.good-info{
+    padding:20px 30rpx;display:flex;background: #fff;margin-top:10px;
+}
+.good-info >.img-wrapper{
+    width:80px;height:80px;text-align:center;
+}
+.good-info>.detail{
+    margin-left:10px;flex:1;
+}
+.good-info>.detail>.title{
+    font-size:14px;color:#333;line-height:1.5;
+}
+.good-info>.detail>.guige{
+    font-size:12px;color:#999;line-height:1.5;
+}
+.good-info>.detail>.rent{
+    font-size:14px;color:#333;line-height:1.5;
+}
+.good-info>.detail>.zhima{
+    border:1px solid #1ccfc9;color:#1ccfc9;display:inline-block;padding:2px 4px;font-size:10px;
+}
+
+.bot{
+    position:fixed;left:0;right:0;bottom:0;height:50px;padding:0 30rpx;
+    text-align:right;display:flex;background: #fff;
+}
+.bot>button{
+    width:80px;height:24px;border-radius:12px;border:1px solid #0dd7aa;
+    color:#0dd7aa;line-height:24px;font-size:12px;margin-top:13px;margin-left:12px;
+}
+
+

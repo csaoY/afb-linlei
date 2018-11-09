@@ -1,0 +1,112 @@
+<view>
+  <view class="user-info">
+    <view class="title">
+     {{info.name}} <text class="number">{{info.mobile}}</text>
+    </view>
+    <view class="adress-wrapper">
+      <view class="adress">{{info.house}}</view>
+      <view class="notice">如需修改地址，请取消订单，重新下单并在信息确认页面进行修改</view>
+    </view>
+  </view>
+  <view class="bar"></view>
+  <view class="good-info">
+    <view class="img-wrapper">
+      <image src="/img/phone.png" mode="widthFix" style="width:60px;height:60px;" />
+    </view>
+    <view class="detail">
+      <view class="title">{{name}}</view>
+      <view class="guige">
+        规格：{{selectedgoodstr}}
+      </view>
+      <view class="rent">商品总租金：￥{{info.goodsAmount}}</view>
+      <view class="zhima" v-if="{{state}}"  a:if="{{info.credit_amount==0?false:true}}">芝麻信用.免押金</view>
+    </view>
+  </view>
+  <view style="height:10px;background:#f5f5f5;"></view>
+  <view class="box-wrapper">
+    <view class="box-list">
+      <view>总租金</view>
+      <view>￥{{rentAmount}}</view>
+    </view>
+     <view class="box-list">
+      <view class="que" onTap="yiwai">意外保障金额
+      </view>
+          <view>￥{{info.servicePrice}}({{info.modeType==1?'分期':'一次性支付'}})</view>
+    </view>
+     <view class="box-list note">
+      <view>月租金</view>
+      <view>￥{{amount}}</view>
+    </view>
+     <view class="box-list">
+      <view>租期</view>
+      <view>{{installmentDate}}</view>
+    </view>
+     <view class="box-list">
+      <view>租金付款方式</view>
+      <view class="que" onTap="mianmi">支付宝免密支付</view>
+    </view>
+  </view>
+  <view class="box-wrapper">
+    <view class="box-list" a:if="{{info.credit_amount==0?false:true}}">
+      <view>总押金</view>
+      <view>￥{{deposit}}</view>
+    </view>
+     <view class="box-list note" v-if="{{state}}"  a:if="{{info.credit_amount==0?false:true}}">
+      <view>芝麻信用免押金</view>
+      <view>-￥{{info.credit_amount}}</view>
+    </view>
+     <view class="box-list note" v-if="{{state}}">
+      <view>需冻结押金</view>
+      <view>￥{{(deposit-info.credit_amount).toFixed(2)}}</view>
+    </view>
+     <view class="box-list">
+      <view>押金冻结方式</view>
+      <view class="que" onTap="zijin">支付宝资金授权</view>
+    </view>
+  </view>
+  <view style="height:10px;background:#f5f5f5"></view>
+
+  <view style="height:97px;background:#f5f5f5"></view>
+  <view class="bot">
+
+      <view class="read">
+     <view class="alert {{tipsShow?'show':''}}">请先阅读并同意协议
+       <view class="sanjiao_down"></view>
+     </view>
+    <view class="point {{agreen?'agreen':''}}" onTap="agreen"></view>
+    我已阅读并同意 <text onTap="xieyi">《赁类用户服务协议》</text>
+  </view>
+    <button class=" {{agreen?'':'disabled'}}" catchTap="submitOrder"> 
+      提交订单
+     </button>
+  </view>
+</view>
+
+<view class="bg" a:if="{{mianmi||zijin||yiwai}}"></view>
+
+<view class="alert-box" a:if="{{mianmi}}">
+  <view class="title">支付宝免密支付</view>
+  <view class="content">服务完结进行结算时，实际费用由商户发起向用户支付宝账户扣款</view>
+  <view class="close-alert" onTap="closeBox">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+<view class="alert-box" a:if="{{zijin}}">
+  <view class="title">支付宝资金授权</view>
+  <view class="content">用户使用服务时，通过支付宝账户资金渠道做相应金额的授权，并不产生实际消费</view>
+  <view class="close-alert" onTap="closeBox">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+<view class="alert-box" a:if="{{yiwai}}">
+  <view class="title">意外保障说明</view>
+  <view class="content">
+    租赁期间租赁物发生非人为原因造成的意外损坏（经甲方鉴定），符合保障服务理赔范围的，由甲方提供一次性理赔的保障服务。
+    <view>
+      不属于本协议保修范围:home键;租赁物受潮;浸水浸液;除外屏、按键外的损坏;日常使用造成的外观磨损或损坏;已私修过租赁物等或其他人为损坏的等。
+    </view>
+  </view>
+  <view class="close-alert"  onTap="closeBox">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>

@@ -1,0 +1,108 @@
+.user-info{
+    padding:16px 30rpx;
+}
+.user-info>.title{
+    font-size:16px;
+}
+.user-info>.title>text{
+    margin-left:20px;
+}
+.user-info>.adress-wrapper{
+    padding-left:15px;background:url('/img/adress.png')no-repeat left top;
+    background-size:8px 10px;
+    background-position-y: 4px
+}
+.user-info>.adress-wrapper>.adress{
+    font-size:14px;color:#888;line-height:1.5;margin-top:5px;
+}
+.user-info>.adress-wrapper>.notice{
+    font-size:10px;color:#999;margin-top:7px;
+}
+.bar{
+    height:5px; background-image: linear-gradient(to right,#138ea9, #0dd7aa);
+}
+.good-info{
+    padding:20px 30rpx;display:flex;
+}
+.good-info >.img-wrapper{
+    width:80px;height:80px;text-align:center;background:#f3f3f3;
+}
+
+.good-info>.detail{
+    margin-left:10px;flex:1;
+}
+.good-info>.detail>.title{
+    font-size:14px;color:#333;line-height:1.5;
+}
+.good-info>.detail>.guige{
+    font-size:12px;color:#999;line-height:1.5;
+}
+.good-info>.detail>.rent{
+    font-size:14px;color:#333;line-height:1.5;
+}
+.good-info>.detail>.zhima{
+    border:1px solid #1ccfc9;color:#1ccfc9;display:inline-block;padding:2px 4px;font-size:10px;
+}
+
+.box-wrapper{
+    padding:20px 15px;line-height:1.5;border-bottom:1px solid #f5f5f5;
+}
+.box-wrapper>.box-list{
+    display:flex;font-size:14px;color:#999;line-height:2;
+}
+.box-wrapper>.box-list.note{
+    color:#333;
+}
+.box-wrapper>.box-list>view:first-child{
+flex:1;align-items:center;
+}
+.box-wrapper>.box-list>view:nth-child(2){
+flex:1;text-align:right;
+}
+.box-wrapper>.box-list>.que:after{
+display:inline-block;width:16px;height:16px;content:"";
+background-image: url('/img/que.png');
+background-size:16px;margin-left:6px;position:relative;top:2px;
+}
+.read{
+    font-size:14px; color:#333;line-height:22px;position:relative;padding:5px 0;
+}
+.read>.alert{
+    position: absolute;background: #35394b;color:#fff;top:-45px;padding:6px 4px;
+    font-size:13px;border-radius:4px;transition: all .3s;opacity: 0
+}
+.read>.alert.show{
+   opacity: 1
+}
+.sanjiao_down{
+    width:0;
+    height:0;
+    overflow:hidden;
+    font-size: 0;     /*是因为, 虽然宽高度为0, 但在IE6下会具有默认的 */
+    line-height: 0;  /* 字体大小和行高, 导致盒子呈现被撑开的长矩形 */
+    border-width:8px 6px;
+    border-style:solid dashed dashed dashed;/*IE6下, 设置余下三条边的border-style为dashed,即可达到透明的效果*/
+    border-color: #35394b transparent transparent transparent;
+    position:absolute;bottom:-14px;
+}
+.read>.point{
+    width:20px;height:20px;border-radius:10px;
+    border:1px solid #666;float:left;margin-right:5px;box-sizing:border-box;
+}
+.read>.point.agreen{
+    background: url('/img/agreen.png');background-size:20px;border:none;
+}
+.read>text{
+    color:#1f84fa
+}
+.bot{
+    position:fixed;bottom:0;left:0;right:0;padding:10px 30rpx;
+    background:#fff;border-top:1px solid #ddd;
+}
+.bot>button{
+    background: #00c0a3;color:#fff;width:100%;height:44px;border-radius:22px;
+    margin-top:10px;
+}
+.bot>button.disabled{
+    background: #99e6da;
+}

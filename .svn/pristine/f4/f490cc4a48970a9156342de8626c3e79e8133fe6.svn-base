@@ -1,0 +1,8 @@
+<view>
+   <view class="top">
+    <image src="/img/fail.png" mode="widthFix" />
+    <view class="fir">下单失败</view>
+    <view class="sec">{{text}}</view>
+  </view>
+  <button  class="btn-def" onTap="Re"> 重试 </button>
+</view>

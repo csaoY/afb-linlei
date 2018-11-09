@@ -1,0 +1,8 @@
+<template name="cancelOrder">
+    <view class="big-bg">
+        <view class="cancelOrder">
+hahah
+        </view>
+    </view>
+
+</template>

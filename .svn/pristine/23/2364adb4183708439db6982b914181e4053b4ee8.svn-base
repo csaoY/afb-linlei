@@ -1,0 +1,47 @@
+{
+  "pages": [
+     "pages/linlei/linlei",
+     "pages/me/me",
+     "pages/goodDetail/goodDetail",
+     "pages/confirmOrder/confirmOrder",
+     "pages/successOrder/successOrder",
+     "pages/failOrder/failOrder",
+     "pages/myOrder/myOrder",
+     "pages/orderDetail/orderDetail",
+     "pages/logistics/logistics",
+     "pages/text/text",
+      "pages/bill/bill",
+       "pages/back/back",
+       "pages/help/help",
+       "pages/selectArea/selectArea",
+        "pages/agreement/agreement"
+  ],
+  "window": {
+    "defaultTitle": "赁类"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#00c0a3",
+    "backgroundColor": "#FBFBFB",
+    "borderStyle": "white",
+    "items": [
+      {
+        "pagePath":  "pages/linlei/linlei",
+        "name": "租赁",
+        "icon": "img/linlei.png",
+        "activeIcon": "img/linlei-active.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "name": "我的",
+        "icon": "img/me.png",
+        "activeIcon": "img/me-active.png"
+      }
+      
+    ]
+  },
+   "networkTimeout": {
+       "request": 10000,
+       "downloadFile": 10000
+    }
+}

@@ -1,0 +1,7 @@
+<template name="noOrder">
+<view sytle="padding:0 30px;text-align:center">
+  <image src="/img/noorder.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;">目前暂无订单</view>
+  <view class="long-btn">返回首页</view>
+</view>
+</template>

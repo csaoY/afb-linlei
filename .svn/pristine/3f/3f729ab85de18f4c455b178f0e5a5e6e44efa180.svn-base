@@ -1,0 +1,61 @@
+<view>
+
+ 
+<image src="/img/banner.png" mode="scaleToFill" class="banner"/>
+<view  class="process">
+<image src="/img/process.png" mode="scaleToFill"/>
+</view>
+<view class="scroll-wrapper">
+<view class="scroll" >
+  <view class="type-wrapper" style="width:{{length*100}}px">
+    <block  a:for="{{catlist}}"  a:key="id" >
+        <view  class="{{currentindex==index?'active':''}}" data-id="{{item.id}}" 
+         data-index="{{index}}" onTap="change" data-cat="{{item.catName}}">{{item.catName}}</view>
+        </block>
+    <view></view>
+  </view>
+ 
+</view>
+ <view class="right-bg"></view>
+</view>
+
+<view class="goods-wrapper">
+<view class="good-title">{{catname}}</view>
+<view class="good-list clear">
+
+ <block  a:for="{{goodlist}}"  a:key="cid" > 
+ <view class="good-wrapper">
+    <view class="good" catchTap="toGoodDetail" data-id="{{item.id}}">
+      <view class="img-wrapper">
+         <image src="{{imgsrc+item.logoImg}}" mode="widthFix"  />
+      </view>
+      <view class="good-name">{{item.goodsName}}</view>
+      <view class="good-intro">
+       月租最低约￥ <text style="font-size:16px;font-weight:bold">{{item.shopPrice}}</text>
+      </view>
+    </view>
+  </view> 
+</block>
+
+
+
+
+
+
+
+  
+ 
+</view>
+
+</view>
+
+
+<view class="footer">
+  <image src="/img/guarantee.png" mode="widthFix" />
+</view>
+
+
+
+
+
+</view>

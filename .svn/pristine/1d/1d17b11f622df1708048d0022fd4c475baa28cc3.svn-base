@@ -1,0 +1,50 @@
+<import src="../templates/cancelOrder/cancelOrder.axml" />
+<view>
+
+ 
+  <view class="header">
+    <view class="img-wrapper">
+      <image src="/img/car.png" mode="widthFix" />
+    </view>
+    <view class="info">
+      <view>物流公司：
+        <text>{{list[0].ExpressName}}</text>
+      </view>
+      <view>
+        订单编号：
+        <text>{{list[0].orderNo}}</text>
+      </view>
+    </view>
+    <view class="copy-wrapper">
+      <view class="copy" onTap="copy">复制</view>
+    </view>
+  </view>
+
+
+  <view class="detail-wrapper">
+
+
+
+    <block a:for="{{list}}">
+  <view class="detail">
+    <view class="time">
+      <view class="hm">{{item.time[1]}}</view>
+      <view class="date">{{item.time[0]}}</view>
+    </view>
+    <view class="process">
+      <view>
+        {{item.context}}
+      </view>
+    </view>   
+  </view>
+
+    </block>
+
+
+
+
+  </view>
+
+
+</view>
+ <template a:if="{{false}}" is="cancelOrder" />

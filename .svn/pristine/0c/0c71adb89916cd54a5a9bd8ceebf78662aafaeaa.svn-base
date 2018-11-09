@@ -1,0 +1,257 @@
+<view>
+<swiper indicator-dots="true"  autoplay="{{false}}" interval="5000" style="height:662rpx;">
+  <block a:for="{{thumbimg}}">
+ <swiper-item>
+      <view class="swiper-item">
+         <image src="{{imgsrc+item}}" mode="widthFix"  />
+      </view>
+    </swiper-item>
+  </block>
+  </swiper>
+  <view class="zhima">
+    <image src="/img/zhima.png" mode="scaleToFill" />
+  </view>
+  <view class="main-title">
+    <view class="title">{{gooditem.goodsNickname}}</view>
+ 
+    <view>
+    </view>
+    <view class="rent-box">月租金： <text class="rent">￥</text ><text class="rent-price">{{gooditem.shopPrice}}</text></view>
+    <view class="price-box"> <view class="price">官网售价</view > <text style="font-size:10px;margin-left:10px;">￥</text><text style="font-size:14px;color:#333">{{gooditem.price}}</text></view>
+  </view>
+  <view class="about clear" catchTap="showAbout">
+    <image src="/img/arrow-right.png" mode="scaleToFill" />
+    <view>
+      <image src="/img/yes.png" mode="scaleToFill" />
+      芝麻信用免押金
+    </view>
+     <view>
+      <image src="/img/yes.png" mode="scaleToFill" />
+      正品保障
+    </view>
+     <view>
+      <image src="/img/yes.png" mode="scaleToFill" />
+      7天无理由退货
+    </view>
+ 
+    
+  </view>
+  <view>{{a}}</view>
+  <view class="bar"></view>
+  <view class="tab">
+    <view class=" {{currentIndex==1?'active':''}}" catchTap="showTap1"><view>商品详情</view></view>
+    <view class=" {{currentIndex==2?'active':''}}" catchTap="showTap2"><view>规则参数</view></view>
+    <view class=" {{currentIndex==3?'active':''}}" catchTap="showTap3"><view>租赁说明</view></view> 
+  </view>
+  <view class="tab1" a:if="{{currentIndex==1}}">
+    <block a:for="{{albumimg}}">
+      <image src="{{imgsrc+item}}" mode="widthFix" style="width:100%;display:block;"/>
+    </block>
+  </view>
+  <view class="tab2" a:if="{{currentIndex==2}}">
+    <block a:for="{{propertieslist}}" a:for-item="item">
+      <block a:for="{{item.second}}" a:for-item="i">
+         <view>
+      <view class="item-title">{{i.name }}</view>
+      <view class="item">{{i.vals.substring(0, i.vals.length - 1)}}</view>
+    </view>
+      </block>     
+   
+    </block>
+    
+  </view>
+  <view class="tab3" a:if="{{currentIndex==3}}">
+    <view>
+      <view class="all-title">租金流程</view>
+      <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">选择商品规格、型号、颜色、租赁期数。在合约期间，一个用户只允许租赁一个商品。 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">评估信用</view>
+        <view class="box-con">通过<text style="color:#1ccfc9">芝麻信用</text>进行免押额度评估，信用越好，免押金额越多。 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">月付租金</view>
+        <view class="box-con">租金通过用户支付宝的免密支付直接扣款，无须用户主动还款。 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">到期买断或归还</view>
+        <view class="box-con">租赁合约到期，可选择还机或者买断。买断金额以买断入口页面显示为主。 </view>
+      </view>
+    </view>
+     <view>
+      <view class="all-title">关于押金与租期</view>
+      <view class="box">
+        <view class="box-title">押金怎么减免？</view>
+        <view class="box-con">按照芝麻分和后台评估系统评估，进行押金的减免，全额押金=机器价格，合约到期，用户将手机寄回，如检测无严重质量问题，全额退还押金。 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">租期可以修改吗？</view>
+        <view class="box-con">设备租期以下单时订单显示为准，确认下单后，租期不可修改。</view>
+      </view>
+       <view class="box">
+        <view class="box-title">起租时间怎么算</view>
+        <view class="box-con">租期是从物流显示您签收商品的时间T+1的00:00点，以物流显示已签收状态为准。例：小Q租赁了一台手机，手机签收时间为5月25日20点23分，则租赁订单的开始时间为：5月26日00：00。</view>
+      </view>
+    </view>
+
+
+ <view>
+      <view class="all-title">租赁期间</view>
+      <view class="box">
+        <view class="box-title">租赁期间可以租转售吗？</view>
+        <view class="box-con">暂不支持由租转售，具体请咨询客服。 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">租赁期间可以提前还机吗？</view>
+        <view class="box-con">订单提交后，不建议提前还机，提前换机需要支付完剩余租金。</view>
+      </view>
+       <view class="box">
+        <view class="box-title">租赁期间如何还款？</view>
+        <view class="box-con">首月租金将于签收后立即扣除，其余月租金将每月从支付宝账户自动扣款。</view>
+
+      </view>
+       <view class="box">
+        <view class="box-title">到期后如何归还？邮寄费用如何计算？</view>
+        <view class="box-con">到期后在我的订单里点击申请归还，并将机器在3个自然日内寄还我司检测，经工程师检测后，如无问题我们将及时退还押金，如不符合归还正常标准（如损坏、刮伤、丢失等），我们将按照检测标准进行相关赔偿或买断。
+邮寄费用遵循谁寄谁支付的原则。</view>
+
+      </view>
+      </view>
+
+
+
+
+
+     
+  </view>
+<view class="bot">
+  <view class="bot-left">
+    <view class="shop-wrapper" onTap="toLinlei">
+     <image src="/img/shop.png" mode="scaleToFill" />
+     <view onTap="back">店铺</view>
+    </view>
+   
+  </view>
+  <view class="bot-right" catchTap="showModel">
+    立即租赁
+  </view>
+</view>
+<view class="model-bg {{modelShow||aboutShow?'show':''}}" catchTap="hideall"></view>
+<view class="selectmodel {{modelShow?'show':''}}">
+  <view class="close-view" catchTap="hideModel">
+    <image src="/img/close.png" mode="widthFix" />
+  </view>
+  <view class="select-header">
+    <view class="img-wrapper">
+      <image src="{{imgsrc+logoimg}}" mode="widthFix"/>
+    </view>
+    <view class="header-wrapper">
+      <view class="header-price">￥{{saleprice}}</view>
+      <view style="margin-top:8px;font-size:16px;color:#333;">库存{{salesnum}}件</view>
+      <view class="haveselected" hidden="{{!goodstring}}">已选：“{{goodstring}}”</view>
+    </view>
+  </view>
+  <scroll-view class="select-body"scroll-y="true" style="max-height:500rpx;">
+      <block a:for="{{propes}}"  a:for-index="idx">
+        <view class="select-box" >
+            <view class="select-title">{{item.name}}</view>      
+             <view class="option-box clear">
+                   <block  a:for="{{item.value}}" a:for-item="j">
+                      <view a:if="{{j[1]==0?false:true}}" data-name="{{item.name}}" 
+                      data-num="{{j[1]}}" data-idx="{{idx}}"
+                      onTap="select" data-val="{{j[0]}}"
+                       class="{{j[1]==0?'disabled':''}}{{selectedgood[idx]===j[0]?'active':''}}">{{j[0]}}</view>
+                      </block>
+                       <block  a:for="{{item.value}}" a:for-item="j">
+                      <view a:if="{{j[1]==0?true:false}}" data-name="{{item.name}}" 
+                      data-num="{{j[1]}}" data-idx="{{idx}}"
+                      onTap="select" data-val="{{j[0]}}"
+                       class="{{j[1]==0?'disabled':''}}{{selectedgood[idx]===j[0]?'act   ive':''}}">{{j[0]}}</view>
+                      </block>
+              </view>
+        </view>    
+      </block>
+    <view class="other-box" a:if={{serviceProps.serviceInstalmentPrice==0&&serviceProps.serviceFullAmount==0?false:true}}>
+      <view class="title">
+        {{serviceProps.serviceName}}
+      </view>
+      <view class="content" a:if={{serviceProps.serviceInstalmentPrice==0?false:true}}>
+        <view class="point {{modeType==1?'active':''}}" onTap="selectService" data-type="1"></view> 
+        <view class="">
+          <view  style="font-size:16px">{{serviceProps.serviceInstalmentPrice_name}}</view>
+    
+        </view>
+       <view style="text-align:right;flex:1;font-size:16px">￥{{serviceInstalmentPrice}}×{{month||'12个月'}}</view>
+      </view>
+      <view class="content" a:if={{serviceProps.serviceFullAmount==0?false:true}}>
+        <view class="point {{modeType==2?'active':''}}" onTap="selectService" data-type="2"></view> 
+        <view class="">
+          <view  style="font-size:16px">{{serviceProps.serviceFullAmount_name}}</view>
+
+        </view>
+       <view style="text-align:right;flex:1;font-size:16px">￥{{serviceFullAmount}}</view>
+      </view>
+    </view>
+    
+
+
+  </scroll-view>
+  <view class="select-footer">
+   <button  a:if="{{salesnum===0?false:true}}" disabled="{{sellength==propes.length?false:true}}"  type="default" size="defaultSize" onTap="defaultTap"
+   style="" catchTap="submitOrder" class="{{sellength==propes.length?'':'disabled'}}">
+      确定 </button>
+      <button a:if="{{salesnum===0?true:false}}" disabled="true" type="default" size="defaultSize" onTap="defaultTap"
+   style="" catchTap="submitOrder" class="disabled">
+      该商品已经售罄 </button>
+  </view>
+</view>
+<view class="about-wrapper {{aboutShow?'show':''}}">
+
+  <view class="title">服务说明</view>
+
+  <view class="big-box">
+     <view class="box">
+    <view class="about-title">
+      <image src="/img/yes.png" mode="scaleToFill" />
+      芝麻信用免押金
+    </view>
+    <view class="about-con">信用好，就有机会全面押金全免优惠</view>
+  </view>
+
+   <view class="box">
+    <view class="about-title">
+      <image src="/img/yes.png" mode="scaleToFill" />
+      正品保障
+    </view>
+    <view class="about-con">100%正品保障,杜绝一切假货,让你购物无忧</view>
+
+  </view>
+
+   <view class="box">
+    <view class="about-title">
+      <image src="/img/yes.png" mode="scaleToFill" />
+      7天无理由退货
+    </view>
+    <view class="about-con">收货后7天内无拆封无激活，可无理由退货</view>
+
+  </view>
+
+
+
+  </view>
+ 
+
+
+
+
+
+  <view style="height:10px;background:#f7f7f7;"></view>
+  <view class="close-about"  catchTap="closeAbout">
+    关闭
+  </view>
+
+</view>
+<view style="height:50px;"></view>
+</view>

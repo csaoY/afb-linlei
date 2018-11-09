@@ -1,0 +1,55 @@
+
+// GET请求
+function GET(_requestHandler) {
+  request('GET', _requestHandler);
+}
+// POST请求
+function POST(_requestHandler) {
+  request('POST', _requestHandler);
+}
+
+function request(_method, _requestHandler) {
+  //_requestHandler.params.channel = 1;
+  // 注意：可以对params加密等处理
+   _requestHandler.params.channel = 1;
+    _requestHandler.params.os = 'zfbMiniProgram';
+     _requestHandler.params.v = '1.0';
+  my.httpRequest({
+    url: _requestHandler.url,
+    data: _requestHandler.params,
+    method: _method, // OPTIONS, GET, HEAD, POST
+    // header: {}, // 设置请求的 header
+    success: (res) => {
+      // 注意：可以对参数解密等处理
+      //   my.alert({ title: String(res.status) });
+      _requestHandler.success(res.data);
+      return ;
+      if (res.data.code === '2000' || res.data.code === '5018' || res.data.code === '5004') {
+        _requestHandler.success(res.data);
+      }else{
+        _requestHandler.success(res.data);
+        my.showToast({
+          type: 'success',
+          content: res.data.result.info,
+          duration: 3000,
+          success: () => {
+          },
+        });
+        return;
+      }
+    },
+    fail: () => {
+      console.log('wangnuochucuo')
+      _requestHandler.fail();
+    },
+    complete: () => {
+      // complete
+    },
+  });
+}
+
+
+module.exports = {
+  get: GET,
+  post: POST,
+};

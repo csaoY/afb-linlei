@@ -1,0 +1,238 @@
+<view>
+<swiper indicator-dots="true"  autoplay="true" interval="5000" style="height:750rpx;">
+  <block a:for="{{thumbimg}}">
+ <swiper-item>
+      <view class="swiper-item">
+         <image src="{{imgsrc+item}}" mode="widthFix"  />
+      </view>
+    </swiper-item>
+  </block>
+  </swiper>
+  <view class="zhima">
+    <image src="/img/zhima.png" mode="scaleToFill" />
+  </view>
+  <view class="main-title">
+    <view class="title">{{gooditem.goodsNickname}}</view>
+ 
+    <view>
+    </view>
+    <view class="rent-box">月租金： <text class="rent">￥</text ><text class="rent-price">{{gooditem.shopPrice}}</text></view>
+    <view class="price-box"> <view class="price">官网售价</view > <text style="font-size:10px;margin-left:10px;">￥</text><text style="font-size:14px;color:#333">{{gooditem.price}}</text></view>
+  </view>
+  <view class="about clear" catchTap="showAbout">
+    <image src="/img/arrow-right.png" mode="scaleToFill" />
+    <view>
+      <image src="/img/yes.png" mode="scaleToFill" />
+      芝麻信用免押金
+    </view>
+     <view>
+      <image src="/img/yes.png" mode="scaleToFill" />
+      正品保障
+    </view>
+     <view>
+      <image src="/img/yes.png" mode="scaleToFill" />
+      7天无理由退货
+    </view>
+ 
+    
+  </view>
+  <view>{{a}}</view>
+  <view class="bar"></view>
+  <view class="tab">
+    <view class=" {{currentIndex==1?'active':''}}" catchTap="showTap1"><view>商品详情</view></view>
+    <view class=" {{currentIndex==2?'active':''}}" catchTap="showTap2"><view>规则参数</view></view>
+    <view class=" {{currentIndex==3?'active':''}}" catchTap="showTap3"><view>售后说明</view></view> 
+  </view>
+  <view class="tab1" a:if="{{currentIndex==1}}">
+    <block a:for="{{albumimg}}">
+      <image src="{{imgsrc+item}}" mode="widthFix" style="width:100%;display:block;"/>
+    </block>
+  </view>
+  <view class="tab2" a:if="{{currentIndex==2}}">
+    <block a:for="{{propertieslist}}" a:for-item="item">
+      <block a:for="{{item.second}}" a:for-item="i">
+         <view>
+      <view class="item-title">{{i.name}}</view>
+      <view class="item">{{i.vals}}</view>
+    </view>
+      </block>     
+   
+    </block>
+    
+  </view>
+  <view class="tab3" a:if="{{currentIndex==3}}">
+    <view>
+      <view class="all-title">售后说明</view>
+      <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">价格；快捷键生日的噶付多所过VB过过过过过过过 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">价格；快捷键生日的噶付多所过VB过过过过过过过 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">价格；快捷键生日的噶付多所过VB过过过过过过过 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">价格；快捷键生日的噶付多所过VB过过过过过过过 </view>
+      </view>
+    </view>
+     <view>
+      <view class="all-title">售后说明</view>
+      <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">价格；快捷键生日的噶付多所过VB过过过过过过过 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">价格；快捷键生日的噶付多所过VB过过过过过过过 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">价格；快捷键生日的噶付多所过VB过过过过过过过 </view>
+      </view>
+       <view class="box">
+        <view class="box-title">挑选商品</view>
+        <view class="box-con">价格；快捷键生日的噶付多所过VB过过过过过过过 </view>
+      </view>
+    </view>
+  </view>
+<view class="bot">
+  <view class="bot-left">
+    <view class="shop-wrapper">
+     <image src="/img/shop.png" mode="scaleToFill" />
+     <view onTap="back">店铺</view>
+    </view>
+   
+  </view>
+  <view class="bot-right" catchTap="showModel">
+    立即租赁
+  </view>
+</view>
+<view class="model-bg {{modelShow||aboutShow?'show':''}}" catchTap="hideall"></view>
+<view class="selectmodel {{modelShow?'show':''}}">
+  <view class="close-view" catchTap="hideModel">
+    <image src="/img/close.png" mode="widthFix" />
+  </view>
+  <view class="select-header">
+    <view class="img-wrapper">
+      <image src="{{imgsrc+logoimg}}" mode="widthFix"/>
+    </view>
+    <view class="header-wrapper">
+      <view class="header-price">￥{{saleprice}}</view>
+      <view style="margin-top:8px;font-size:16px;color:#333;">库存{{salesnum}}件</view>
+      <view class="haveselected" hidden="{{!goodstring}}">已选：“{{goodstring}}”</view>
+    </view>
+  </view>
+  <scroll-view class="select-body"scroll-y="true" style="max-height:500rpx;">
+      <block a:for="{{propes}}"  a:for-index="idx">
+        <view class="select-box" >
+            <view class="select-title">{{item.name}}</view>      
+             <view class="option-box clear">
+                   <block  a:for="{{item.value}}" a:for-item="j">
+                      <view a:if="{{j[1]==0?false:true}}" data-name="{{item.name}}" 
+                      data-num="{{j[1]}}" data-idx="{{idx}}"
+                      onTap="select" data-val="{{j[0]}}"
+                       class="{{j[1]==0?'disabled':''}}{{selectedgood[idx]===j[0]?'active':''}}">{{j[0]}}</view>
+                      </block>
+                       <block  a:for="{{item.value}}" a:for-item="j">
+                      <view a:if="{{j[1]==0?true:false}}" data-name="{{item.name}}" 
+                      data-num="{{j[1]}}" data-idx="{{idx}}"
+                      onTap="select" data-val="{{j[0]}}"
+                       class="{{j[1]==0?'disabled':''}}{{selectedgood[idx]===j[0]?'act   ive':''}}">{{j[0]}}</view>
+                      </block>
+              </view>
+        </view>    
+      </block>
+    <view class="other-box" a:if={{serviceProps.serviceInstalmentPrice==0&&serviceProps.serviceFullAmount==0?false:true}}>
+      <view class="title">
+        {{serviceProps.serviceName}}
+      </view>
+      <view class="content" a:if={{serviceProps.serviceInstalmentPrice==0?false:true}}>
+        <view class="point {{modeType==1?'active':''}}" onTap="selectService" data-type="1"></view> 
+        <view class="">
+          <view  style="font-size:16px">{{serviceProps.serviceInstalmentPrice_name}}</view>
+          <view style="font-size:12px;color:#999;margin-top:4px;">因为你的心</view>
+        </view>
+       <view style="text-align:right;flex:1;font-size:16px">￥{{serviceInstalmentPrice}}×{{month||'12个月'}}</view>
+      </view>
+      <view class="content" a:if={{serviceProps.serviceFullAmount==0?false:true}}>
+        <view class="point {{modeType==2?'active':''}}" onTap="selectService" data-type="2"></view> 
+        <view class="">
+          <view  style="font-size:16px">{{serviceProps.serviceFullAmount_name}}</view>
+          <view style="font-size:12px;color:#999;margin-top:4px;">因为你的心因为你的心因为你的心因为你的</view>
+        </view>
+       <view style="text-align:right;flex:1;font-size:16px">￥{{serviceFullAmount}}</view>
+      </view>
+    </view>
+    
+
+
+  </scroll-view>
+  <view class="select-footer">
+   <button  a:if="{{salesnum===0?false:true}}" disabled="{{sellength==propes.length?false:true}}"  type="default" size="defaultSize" onTap="defaultTap"
+   style="" catchTap="submitOrder" class="{{sellength==propes.length?'':'disabled'}}">
+      确定 </button>
+      <button a:if="{{salesnum===0?true:false}}" disabled="true" type="default" size="defaultSize" onTap="defaultTap"
+   style="" catchTap="submitOrder" class="disabled">
+      该商品已经售罄 </button>
+  </view>
+</view>
+<view class="about-wrapper {{aboutShow?'show':''}}">
+
+  <view class="title">服务说明</view>
+
+  <view class="big-box">
+     <view class="box">
+    <view class="about-title">
+      <image src="/img/yes.png" mode="scaleToFill" />
+      芝麻信用免押金
+    </view>
+    <view class="about-con">信用好，就有机会全面押金奥，开心不</view>
+  </view>
+
+   <view class="box">
+    <view class="about-title">
+      <image src="/img/yes.png" mode="scaleToFill" />
+      芝麻信用免押金
+    </view>
+    <view class="about-con">信用好，就有机会全面押金奥，开心不</view>
+
+  </view>
+
+   <view class="box">
+    <view class="about-title">
+      <image src="/img/yes.png" mode="scaleToFill" />
+      芝麻信用免押金
+    </view>
+    <view class="about-con">信用好，就有机会全面押金奥，开心不</view>
+
+  </view>
+
+   <view class="box">
+    <view class="about-title">
+      <image src="/img/yes.png" mode="scaleToFill" />
+      芝麻信用免押金
+    </view>
+    <view class="about-con">信用好，就有机会全面押金奥，开心不</view>
+
+  </view>
+
+  </view>
+ 
+
+
+
+
+
+  <view style="height:10px;background:#f7f7f7;"></view>
+  <view class="close-about"  catchTap="closeAbout">
+    关闭
+  </view>
+
+</view>
+<view style="height:50px;"></view>
+</view>

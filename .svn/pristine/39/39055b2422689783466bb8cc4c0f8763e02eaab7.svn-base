@@ -1,0 +1,110 @@
+
+ <view style="padding:0 30px;text-align:center;margin-top:120px;"a:if="{{list.length==0&&loaded==true?true:false}}">
+  <image src="/img/noorder.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;color:#666">目前暂无订单</view>
+  <view class="long-btn" onTap="backToIndex">返回首页</view>
+</view>
+ <view style="padding:0 30px;text-align:center;margin-top:120px;" a:if="{{err==true?true:false}}">
+  <image src="/img/error.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;color:#666">系统异常，请重试</view>
+  <view class="long-btn" onTap="redo">重试</view>
+</view>
+<view a:if="{{!!list&&loaded==true?true:false}}" style="padding-top:44px;">
+  <view class="tab">
+    <view data-state="1"  onTap="getList" data-idx="0"  class="{{currentIndex==0?'active':''}}">
+      <text>全部</text>
+      </view>
+    <view onTap="getList" data-state="2" data-idx="1"  class="{{currentIndex==1?'active':''}}"> <text>进行中</text></view>
+    <view onTap="getList" data-state="3" data-idx="2" class="{{currentIndex==2?'active':''}}"> <text>已取消</text></view>
+    <view onTap="getList" data-state="4" data-idx="3" class="{{currentIndex==3?'active':''}}"> <text>已完成</text></view>
+  </view>
+ <block  a:for="{{list}}"  > 
+
+  <view class="order" a:if="{{item.orderStatus=='NEW'?false:true}}" data-orderId="{{item.orderId}}"  data-orderStatus="{{item.orderStatus}}" onTap="toOrderDeteil">
+    <view class="order-header">
+      <view>{{item.created}}</view>
+      <view class="state" a:if="{{item.orderStatus=='CHECK'?true:false}}">待发货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='UNDELIVERY'?true:false}}">待发货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='DELIVERY'?true:false}}">已发货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='SIGN'?true:false}}">租用中</view>
+        <view class="state" a:if="{{item.orderStatus=='CONFIRM'?true:false}}">待确认</view>
+        <view class="state" a:if="{{item.orderStatus=='CANCEL'?true:false}}">已取消</view>
+        <view class="state" a:if="{{item.orderStatus=='REFUND'?true:false}}">已退款</view>
+        <view class="state" a:if="{{item.orderStatus=='ASSESS'?true:false}}">已完成</view>
+        <view>{{item.orderStatus}}</view>
+    </view>
+    <view class="order-body">
+      <view class="img-wrapper">
+        <image src="{{imgsrc+item.thumbImg}}" mode="widthFix" />
+      </view>
+      <view class="body-right">
+        <view class="title">{{item.goodsName}}</view>
+        <view class="guige">规格：{{item.specifications}}</view>
+        <view class="rent">租金：￥8577</view>
+      </view>
+    </view>
+    <view class="order-foot clear">
+      <view a:if="{{item.cancelStatus==1?true:false}}" catchTap="cancelOrder" data-orderId="{{item.orderId}}">取消订单{{item.cancelStatus}}</view>
+        <view type="default" size="defaultSize" catchTap="toObtain"  data-orderId="{{item.orderId}}">查看物流 </view>
+  <view type="default" size="defaultSize" catchTap="toBill" data-orderId="{{item.orderId}}">查看账单 </view>
+  <view type="default" size="defaultSize" 
+   style="background:#0dd7aa;color:#fff;" catchTap="collectGood" data-orderId="{{item.orderId}}">确认收货 </view>
+  </view>
+    </view>
+  </view>
+
+</block>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>
+
+<view class="bg" a:if="{{cancel}}"></view>
+<view class="alert-box" a:if="{{cancel}}">
+  <view class="title">取消订单</view>
+  <view class="content">
+    <view class="why">取消原因</view>
+    <block a:for="{{cancelOrderReason}}">
+     <view class="list"  onTap="selectReason" data-index="{{index}}">
+      <view class="one {{reasonIdx==index?'active':''}}"></view>
+      <view class="two">{{item}}</view>
+    </view>
+    </block>
+  </view>
+  <view class="footer-option">
+    <view class="btn" onTap="cancelcancel">取消</view>
+    <view class="btn" onTap="confirmcancel">确认</view>
+  </view>
+</view>
+
+
+
+<view class="alert-box" a:if="{{collectBox}}">
+  <view class="title">确认收货</view>
+  <view class="content">确认收货的流程以及其他问题哈哈哈哈哈哈哈哈哈哈哈哈或</view>
+  <view class="footer-option">
+    <view class="btn" onTap="cancelCollect">取消</view>
+    <view class="btn" onTap="confirmCollect">确认</view>
+  </view>
+</view>
+<view class="alert-box" a:if="{{false}}">
+  <view class="title">支付宝免密支付</view>
+  <view class="content">确认收货的流程以及其他问题哈哈哈哈哈哈哈哈哈哈哈哈或</view>
+  <view class="close-alert">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+
+

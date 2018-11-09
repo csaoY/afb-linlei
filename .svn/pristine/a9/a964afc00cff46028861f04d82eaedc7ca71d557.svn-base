@@ -1,0 +1,142 @@
+<view>
+  
+  <view class="header">
+<view class="img-wrapper"></view>
+<view class="header-left">
+  <view class="first">手机</view>
+  <view class="sec">规格：接口是打几个</view>
+</view>
+</view>
+
+
+
+<view class="list-wrapper">
+  <view class="list">
+    <view> 归还方式</view>
+    <view  class="select"  catchTap="showPv">
+    {{arr1[idx]}}
+    <image src="/img/arrow-right.png" mode="widthFix" style="width:20px;"/>
+    </view>
+</view>
+</view>
+<view class="list-wrapper" a:if="{{idx==0?true:false}}">
+    <view class="list2">
+    <view> 姓名</view>
+    <view  class="fill">
+   <input placeholder="请输入姓名" auto-focus />
+    </view>
+  </view>
+   <view class="list2">
+    <view> 联系方式</view>
+    <view  class="fill">
+   <input type="number"  placeholder="联系方式 " auto-focus />
+    </view>
+  </view>
+  <view class="list">
+    <view> 取件时间</view>
+    <view  class="select">
+    {{abc||"请选择您的取件时间"}}
+    <image src="/img/arrow-right.png" mode="widthFix" style="width:20px;"/>
+    </view>
+  </view>
+  <view class="list" onTap="selectArea">
+    <view> 取件地区</view>
+    <view  class="select">
+   {{address||"请选择取件地址"}}
+    <image src="/img/arrow-right.png" mode="widthFix" style="width:20px;"/>
+    </view>
+  </view>
+  <view class="list">
+    <view> 详细地址</view>
+    <view  class="fill">
+   <textarea   placeholder="街道 街道 街道 " auto-height=true  maxlength="-1" />
+    </view>
+  </view>
+
+    <view class="list">
+    <view style="flex:1;">
+      <view style="">归还地址</view>
+      <view style="font-size:14px;color:#999;">深圳市福田区泰然九路海松大厦B座901</view>
+    </view>
+  </view>
+  
+</view>
+
+
+
+
+<view class="list-wrapper" a:if="{{idx==1?true:false}}">
+  <view class="list2">
+    <view> 物流公司</view>
+    <view  class="fill">
+   <input type=""  placeholder="输入物流公司" />
+    </view>
+  </view>
+   <view class="list2">
+    <view> 物流单号</view>
+    <view  class="fill">
+   <input type="number" placeholder="输入物流单号" auto-focus/>
+    </view>
+  </view>
+
+
+    <view class="list">
+    <view style="flex:1;">
+      <view >归还地址</view>
+      <view style="font-size:14px;color:#999;">深圳市福田区泰然九路海松大厦B座901</view>
+    </view>
+  </view>
+  
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<view class="bg {{pvShow?'showBg':''}}" a:if="{{false}}"></view>
+
+<view class="pv-container {{pvShow?'show':''}}">
+  
+  <view class="title">
+    <view catchTap="hidePv">取消</view>
+    <view catchTap="ok">确定</view>
+  </view>
+  <view class="pv-left" >
+    <picker-view value="{{value}}" onChange="onChange">
+      <picker-view-column>
+        <block a:for="{{arr1}}">
+          <view>{{item}}</view>
+        </block>
+      </picker-view-column>
+  </view>
+</view>
+
+
+</view>

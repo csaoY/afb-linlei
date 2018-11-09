@@ -1,0 +1,109 @@
+import util from '/utils/util'
+import urls from '/utils/urls'
+import network from '/utils/network'
+Page({
+  data: {
+    loaded:false,
+    err:false,
+  },
+  onLoad() {
+    this.getcode()
+
+  },
+    getcode(){
+       my.showLoading({
+     content: '加载中...',
+     delay: 0,
+   });
+         const that=this;
+        my.getAuthCode({  
+      scopes: 'auth_user', 
+      success: (res) => { 
+       this.getAlipayUserInfo(res.authCode);
+      
+
+
+         },
+          });
+
+  },
+    getAlipayUserInfo(code){
+    const that=this
+     const myparams =new Object();
+   myparams.code=code;
+  network.post({
+     url: urls.getAlipayUserInfo,
+     params: myparams,
+     success: (data) => {
+       this.orderList()
+  }
+  })
+  },
+  orderList(){
+     const myparams1 =new Object();
+  network.post({
+     url: urls.orderList,
+     params: myparams1,
+     success: (data) => {
+       console.log(data)
+        console.log(data.result[1])
+        console.log(data.result.length)
+      this.setData({
+        imgsrc:data.imgSrc,
+        list:data.result,
+        loaded:true,
+        err:false
+      })
+      my.hideLoading();
+      },
+      fail: () => {
+      
+    this.setData({
+         loaded:true,
+         err:true,
+      })
+      my.hideLoading();
+     
+      },
+  })
+  },
+  backToIndex(){
+     my.switchTab({
+     url:'../linlei/linlei'
+   })
+  },
+  onPullDownRefresh() {
+      const myparams1 =new Object();
+  network.post({
+     url: urls.orderList,
+     params: myparams1,
+     success: (data) => {
+         my.stopPullDownRefresh()
+       console.log(data)
+        console.log(data.result[1])
+        console.log(data.result.length)
+      this.setData({
+        imgsrc:data.imgSrc,
+        list:data.result,
+        loaded:true,
+        err:false
+      })
+      my.hideLoading();
+      },
+      fail: () => {
+          my.stopPullDownRefresh()
+      
+    this.setData({
+         loaded:true,
+         err:true,
+      })
+      my.hideLoading();
+     
+      },
+  })
+},
+getList(e){
+  console.log(e.target.dataset.state)
+}
+  
+});

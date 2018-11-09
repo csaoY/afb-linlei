@@ -1,0 +1,24 @@
+<view sytle="display:block;">
+
+  <view class="option-wrapper">
+    <view class="option" onTap="toMyOreder">
+      我的订单
+       <image src="/img/arrow-right.png" mode="scaleToFill"  />
+      </view>
+       <view class="option" onTap="toHelp">
+      帮助中心
+       <image src="/img/arrow-right.png" mode="scaleToFill"  />
+      </view>
+    </view>
+    
+
+    <view class="kefu-wrapper">
+ <view class="kefu">
+      <view class="line"></view>
+      <view class="content">客服电话：<text>0571 56133203</text></view>
+      <view class="line"></view>
+    </view>
+
+    </view>
+   
+</view>

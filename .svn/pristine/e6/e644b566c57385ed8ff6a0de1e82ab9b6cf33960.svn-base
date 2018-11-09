@@ -1,0 +1,82 @@
+<import src="../templates/cancelOrder/cancelOrder.axml" />
+<view>
+
+ 
+  <view class="header">
+    <view class="img-wrapper">
+      <image src="/img/car.png" mode="widthFix" />
+    </view>
+    <view class="info">
+      <view>物流公司：
+        <text>顺丰</text>
+      </view>
+      <view>
+        订单编号：
+        <text>47q89571957981</text>
+      </view>
+    </view>
+    <view class="copy-wrapper">
+      <view class="copy">复制</view>
+    </view>
+  </view>
+
+
+  <view class="detail-wrapper">
+
+  <view class="detail">
+
+
+    <view class="time">
+      <view class="hm">15:00</view>
+      <view class="date">2012.5.6</view>
+    </view>
+
+    
+    <view class="process">
+      <view>
+ 北京地区我按个哈坎垃圾广告骄傲卡拉干坎垃坎垃圾广告骄傲卡拉干坎垃圾广告骄傲卡拉干
+      </view>
+    </view>
+    
+  </view>
+
+
+  <view class="detail">
+    <view class="time">
+      <view class="hm">15:00</view>
+      <view class="date">2012.5.6</view>
+    </view>
+    <view class="process">
+      <view>
+ 北京地区我按个哈坎垃圾广告骄傲卡拉干
+      </view>
+    </view>
+  </view>
+  <view class="detail">
+    <view class="time">
+      <view class="hm">15:00</view>
+      <view class="date">2012.5.6</view>
+    </view>
+    <view class="process">
+      <view>
+ 北京地区我按个哈坎垃圾广告骄傲卡拉干
+      </view>
+    </view>
+  </view>
+  <view class="detail">
+    <view class="time">
+      <view class="hm">15:00</view>
+      <view class="date">2012.5.6</view>
+    </view>
+    <view class="process">
+      <view>
+ 北京地区我按个哈坎垃圾广告骄傲卡拉干
+      </view>
+    </view>
+  </view>
+
+  </view>
+
+
+</view>
+ <template a:if="{{false}}" is="cancelOrder" />

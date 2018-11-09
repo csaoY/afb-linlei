@@ -1,0 +1,71 @@
+
+ <view style="padding:0 30px;text-align:center;margin-top:120px;"a:if="{{list.length==0&&loaded==true?true:false}}">
+  <image src="/img/noorder.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;color:#666">目前暂无订单</view>
+  <view class="long-btn" onTap="backToIndex">返回首页</view>
+</view>
+ <view style="padding:0 30px;text-align:center;margin-top:120px;" a:if="{{err==true?true:false}}">
+  <image src="/img/error.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;color:#666">系统异常，请重试</view>
+  <view class="long-btn">重试</view>
+</view>
+<view a:if="{{!!list&&loaded==true?true:false}}" style="padding-top:44px;">
+  <view class="tab">
+    <view class="active" onTap="getList">
+      <text>全部</text>
+      </view>
+    <view onTap="getList" data-state="PROCESSING"> <text>进行中</text></view>
+    <view onTap="getList" data-state="CANCEL"> <text>已取消</text></view>
+    <view onTap="getList" data-state="FULFIL"> <text>已完成</text></view>
+  </view>
+ <block  a:for="{{list}}"  > 
+
+  <view class="order">
+    <view class="order-header">
+      <view>{{item.created}}</view>
+      <view class="state" a:if="{{item.orderStatus=='CHECK'?true:false}}">待发货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='UNDELIVERY'?true:false}}">待发货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='DELIVERY'?true:false}}">已发货</view>
+      <view class="state" a:if="{{item.orderStatus=='PROCESSING'&&item.deliveryStatus=='SIGN'?true:false}}">租用中</view>
+        <view class="state" a:if="{{item.orderStatus=='CONFIRM'?true:false}}">待确认</view>
+        <view class="state" a:if="{{item.orderStatus=='CANCEL'?true:false}}">已取消</view>
+        <view class="state" a:if="{{item.orderStatus=='REFUND'?true:false}}">已退款</view>
+        <view class="state" a:if="{{item.orderStatus=='ASSESS'?true:false}}">已完成</view>
+        <view>{{item.orderStatus}}</view>
+        
+        
+
+      
+    </view>
+    <view class="order-body">
+      <view class="img-wrapper">
+        <image src="{{imgsrc+item.thumbImg}}" mode="widthFix" />
+      </view>
+      <view class="body-right">
+        <view class="title">{{item.goodsName}}</view>
+        <view class="guige">规格：{{item.specifications}}</view>
+        <view class="rent">租金：￥8577</view>
+      </view>
+    </view>
+    <view class="order-foot clear">
+      <view>取消订单</view>
+    </view>
+  </view>
+
+</block>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

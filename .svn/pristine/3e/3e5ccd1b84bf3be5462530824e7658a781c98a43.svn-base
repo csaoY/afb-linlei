@@ -1,0 +1,259 @@
+<view a:if="{{loaded}}">
+
+  <view class="header">
+
+    <view class="state">
+        <view class="state" a:if="{{info.orderStatus=='CHECK'?true:false}}">    <image src="/img/state1.png" mode="widthFix" />待发货</view>
+      <view class="state" a:if="{{info.orderStatus=='PROCESSING'&&info.deliveryStatus=='UNDELIVERY'?true:false}}"><image src="/img/state1.png" mode="widthFix" />待发货</view>
+      <view class="state" a:if="{{info.orderStatus=='PROCESSING'&&info.deliveryStatus=='DELIVERY'?true:false}}"><image src="/img/state2.png" mode="widthFix" />已发货</view>
+      <view class="state" a:if="{{info.orderStatus=='PROCESSING'&&info.deliveryStatus=='SIGN'?true:false}}"><image src="/img/state3.png" mode="widthFix" />租用中</view>
+        <view class="state" a:if="{{info.orderStatus=='CANCEL'?true:false}}"><image src="/img/state4.png" mode="widthFix" />已取消</view>
+        <view class="state" a:if="{{info.orderStatus=='REFUND'?true:false}}"><image src="/img/state4.png" mode="widthFix" />已退款</view>
+        <view class="state" a:if="{{info.orderStatus=='FULFIL'?true:false}}"><image src="/img/state1.png" mode="widthFix" />已完成</view>
+      </view>
+<view class="other-wrapper">
+          <view class="daoyu" a:if="{{info.orderStatus=='CHECK'?true:false}}">订单已推送给商家备货，请耐心等待</view>
+      <view class="daoyu" a:if="{{info.orderStatus=='PROCESSING'&&info.deliveryStatus=='UNDELIVERY'?true:false}}">订单已推送给商家备货，请耐心等待</view>
+    <view class="daoyu"  a:if="{{info.orderStatus=='PROCESSING'&&info.deliveryStatus=='DELIVERY'?true:false}}">您的包裹已交由快递公司配送</view>
+            <view class="daoyu" a:if="{{info.orderStatus=='CANCEL'?true:false}}">订单已取消</view>
+            <view class="daoyu" a:if="{{info.orderStatus=='PROCESSING'&&info.deliveryStatus=='SIGN'?true:false}}">订单正在生效</view>
+                    <view class="daoyu" a:if="{{info.orderStatus=='REFUND'?true:false}}">订单已经退款</view>
+                            <view class="daoyu" a:if="{{info.orderStatus=='FULFIL'?true:false}}">订单已经完成</view>
+      <view class="time">{{info.created}}</view>
+</view>
+     
+
+    
+     <view class="user-info">
+    <view class="title">
+     {{info.name}} <text class="number">{{info.mobile}}</text>
+    </view>
+    <view class="adress-wrapper">
+      <view class="adress">{{info.address}}</view>
+      <view style="display:flex;align-items:center;" onTap="qianshou">
+      <view style="hieght:12px;font-size:12px;color:rgb(16,142,233);line-hieght:12px;width:90%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display:flex;align-item:center;">
+        签收须知：按规定所所所所所所所所所所所所所所所所过过过过过过过过过 
+      </view>
+      <image src="/img/arrow-right.png" mode="widthFix"  style="width:20px;"/>
+    </view>
+
+      </view>
+
+  </view>
+
+ <view class="good-info">
+    <view class="img-wrapper">
+      <image src="{{imgSrc+info.thumbImg}}" mode="widthFix" style="width:60px;height:60px;" />
+    </view>
+    <view class="detail">
+      <view class="title">{{info.goodsName}}</view>
+      <view class="guige">
+        规格：{{info.specifications}}
+      </view>
+      <view class="rent">总租金：￥{{info.mobileTotalRent}}</view>
+      <view class="zhima" v-if="{{state}}">芝麻信用.免押金</view>
+    </view>
+  </view>
+  <view style="height:10px;background:#f5f5f5;"></view>
+  <view class="box-wrapper">
+    <view class="box-list">
+      <view>总租金</view>
+      <view>￥{{info.totalRent}}</view>
+    </view>
+     <view class="box-list">
+      <view class="que">意外保障金额
+      </view>
+      <view>￥{{info.servicePrice}}({{info.modeType==1?'分期':'一次性支付'}})</view>
+    </view>
+     <view class="box-list">
+      <view>月租金</view>
+      <view>￥{{info.shopPrice}}</view>
+    </view>
+     <view class="box-list">
+      <view>租期</view>
+      <view>{{info.installmentDate}}</view>
+    </view>
+     <view class="box-list">
+      <view>租金付款方式</view>
+      <view class="que" onTap="mianmi">支付宝免密支付</view>
+    </view>
+  </view>
+  <view class="box-wrapper">
+    <view class="box-list">
+      <view>总押金</view>
+      <view>￥{{info.price}}</view>
+    </view>
+     <view class="box-list" v-if="{{state}}">
+      <view>芝麻信用免押金</view>
+      <view>-￥{{info.exemptedAmount}}</view>
+    </view>
+     <view class="box-list" v-if="{{state}}">
+      <view>需冻结押金</view>
+      <view>￥{{(info.price-info.exemptedAmount).toFixed(2)}}</view>
+    </view>
+     <view class="box-list">
+      <view>押金冻结方式</view>
+      <view class="que" onTap="zijin">支付宝资金授权</view>
+    </view>
+  </view>
+  <view style="height:10px;background:#f5f5f5"></view>
+   <view class="box-wrapper">
+  
+     <view class="box-list" v-if="{{state}}">
+      <view>订单编号</view>
+      <view>{{info.aliOrderNo}}</view>
+    </view>
+     <view class="box-list">
+      <view>下单时间</view>
+      <view onTap="zijin">{{info.created}}</view>
+    </view>
+  </view>
+
+
+
+
+
+
+
+  <view class="bg" a:if="{{mianmi||zijin||collectBox||qianshou||cancel}}"></view>
+
+<view class="alert-box" a:if="{{mianmi}}">
+  <view class="title">支付宝免密支付</view>
+  <view class="content">服务完结进行结算时，实际费用由商户发起向用户支付宝账户扣款</view>
+  <view class="close-alert" onTap="closeBox">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+<view class="alert-box" a:if="{{zijin}}">
+  <view class="title">支付宝资金授权</view>
+  <view class="content">用户使用服务时，通过支付宝账户资金渠道做相应金额的授权，并不产生实际消费</view>
+  <view class="close-alert" onTap="closeBox">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+<view class="alert-box" a:if="{{qianshou}}">
+  <view class="title">签收须知</view>
+  <view class="content">
+    收货当天你需要：
+    <view>
+1：jaijgajglk
+    </view>
+
+        <view>
+1：jaijgajglk
+    </view>
+
+        <view>
+1：jaijgajglk
+    </view>
+
+    
+
+  </view>
+  <view class="close-alert" onTap="closeBox">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<view style="height:50px;"></view>
+  <view class="bot">
+  <button type="default" size="defaultSize" onTap="toObtain"  data-orderId="{{info.orderId}}"   a:if="{{info.orderStatus=='PROCESSING'&&info.deliveryStatus=='DELIVERY'?true:false}}">查看物流 </button>
+  <button type="default" size="defaultSize" onTap="toBill" data-orderId="{{info.orderId}}"  a:if="{{info.orderStatus=='PROCESSING'&&info.deliveryStatus=='SIGN'?true:false}}">查看账单 </button>
+  <button type="default" size="defaultSize" catchTap="cancelOrder" data-orderId="{{info.orderId}}" a:if="{{(info.orderStatus=='CHECK'?true:false)||(info.orderStatus=='PROCESSING'&&item.deliveryStatus=='UNDELIVERY'?true:false)?true:false}}">取消订单 </button>
+  <button type="default" size="defaultSize" 
+   style="background:#0dd7aa;color:#fff;" onTap="collectGood" data-orderId="{{info.orderId}}"   a:if="{{info.orderStatus=='PROCESSING'&&item.deliveryStatus=='DELIVERY'?true:false}}">确认收货 </button>
+       <button type="default" size="defaultSize" onTap="call"  >联系客服</button>
+       <button   style="background:#0dd7aa;color:#fff;" a:if="{{info.repaymentType==2?true:false}}" onTap="back"> 申请还机 </button>
+  </view>
+
+</view>
+<view class="alert-box" a:if="{{collectBox}}">
+  <view class="title">确认收货</view>
+  <view class="content">确认收货的流程以及其他问题哈哈哈哈哈哈哈哈哈哈哈哈或</view>
+  <view class="footer-option">
+    <view class="btn" onTap="cancelCollect">取消</view>
+    <view class="btn" onTap="confirmCollect">确认</view>
+  </view>
+</view>
+<view class="alert-box" a:if="{{false||cancel}}">
+  <view class="title">支付宝免密支付</view>
+  <view class="content">确认收货的流程以及其他问题哈哈哈哈哈哈哈哈哈哈哈哈或</view>
+  <view class="close-alert">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+
+<view class="alert-box" a:if="{{cancel}}">
+  <view class="title">取消订单</view>
+  <view class="content">
+    <view class="why">取消原因</view>
+    <block a:for="{{cancelOrderReason}}">
+     <view class="list"  onTap="selectReason" data-index="{{index}}">
+      <view class="one {{reasonIdx==index?'active':''}}"></view>
+      <view class="two">{{item}}</view>
+    </view>
+    </block>
+  </view>
+  <view class="footer-option">
+    <view class="btn" onTap="cancelcancel">取消</view>
+    <view class="btn" onTap="confirmcancel">确认</view>
+  </view>
+</view>

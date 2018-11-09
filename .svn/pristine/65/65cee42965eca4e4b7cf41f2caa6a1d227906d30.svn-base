@@ -1,0 +1,309 @@
+import util from '/utils/util'
+import urls from '/utils/urls'
+import network from '/utils/network'
+ var selectedgood={};
+ var goodstring=""
+ var selectedgoodstr=""
+Page({
+  data: {
+    imgsrc:"",
+    imgs:[],
+    modelShow:false,
+    currentIndex:1,
+    aboutShow:false,
+    gooditem:{},
+    propertiesList:[],
+    propes:[],
+    selectedgood:{},
+    selectedgoodstr:'',
+    albumimg:[],//商品相册
+    thumbimg:[],//banner图
+    resultObj:{}//选择所有选项之后得到的组合数组
+      },
+  onLoad(option) {
+    console.log(option.id);
+    this.getDetail(option.id);
+    this.PropertiesList(option.id)
+  },
+  onUnload(){
+    selectedgood={};
+  },
+  showModel(){
+    this.setData({
+      modelShow:true
+    })
+  },
+  hideall(){
+     this.setData({
+      modelShow:false,
+      aboutShow:false
+    })
+  },
+    hideModel(){
+     this.setData({
+      modelShow:false
+    })
+  },
+  showTap1(){
+    this.setData({
+     currentIndex:1
+    })
+
+  },
+   showTap2(){
+    this.setData({
+     currentIndex:2
+    })
+  },
+   showTap3(){
+    this.setData({
+     currentIndex:3
+    })
+  },
+  closeAbout(){
+     this.setData({
+      aboutShow:false
+    })
+  },
+  showAbout(){
+    this.setData({
+      aboutShow:true
+    })
+  },
+  submitOrder(){
+     my.showLoading({
+     content: '加载中...',
+     delay: 0,
+   });
+    const that=this;
+  my.getAuthCode({  
+      scopes: 'auth_user', 
+      success: (res) => { 
+        this.getAlipayUserInfo(res.authCode);//上传支付宝userid
+         },
+          });
+
+  },
+  getDetail(id){
+   const that=this;
+   const myparams =new Object();
+   myparams.id=id;
+  network.post({
+     url: urls.gooddetail,
+     params: myparams,
+     success: (data) => {
+       console.log(data)
+      let propes=data.result.commodity.propes;
+         for (var i=0;i<propes.length;i++){
+            for(var j=0;j<propes[i].value.length;j++){
+              propes[i].value[j]=propes[i].value[j].split('|')
+            }
+          }         
+       that.setData({
+         gooditem:data.result.commodity.objs ,
+         imgsrc:data.imgSrc,
+         goodlist:data.result.commodity.propes,
+         propes:propes,
+         resultlist:data.result.commodity.objs.commodityItems,
+         saleprice:data.result.commodity.objs.shopPrice ,
+         salesnum:data.result.commodity.objs.quantity ,
+         logoimg:data.result.commodity.objs.logoImg ,
+
+        });        
+        const albumImg=data.result.commodity.objs.albumImg.split(',');
+        const thumbImg=data.result.commodity.objs.thumbImg.split(',');
+        that.setData({
+          albumimg:albumImg,//商品相册
+          thumbimg:thumbImg//banner图
+        })
+      },
+      fail: () => {
+       my.alert({
+         success: (res) => {
+           conent:"cuole"
+         },
+       });
+      },
+  })
+  },
+  PropertiesList(id){
+    var that=this;
+   const myparams =new Object();
+   myparams.commodityId=id;
+  network.post({
+     url: urls.PropertiesList,
+     params: myparams,
+     success: (data) => {
+      //console.log(data);
+      that.setData({
+        propertieslist:data.result.propertiesList
+      })
+      },
+      fail: () => {
+        console.log(111)
+      },
+  })
+  },
+  submissionorder(aliid,itemid,goodid){//生成商品订单
+    const that=this;
+   const myparams =new Object();
+   myparams.aliid=aliid;
+   myparams.goodsId=goodid;
+   myparams.itemId=itemid;
+   console.log(myparams)
+  network.post({
+     url: urls.submissionorder,
+     params: myparams,
+     success: (data) => {
+      console.log(data);
+     
+my.startZMCreditRent({
+    category: "ZMSC_1_1_1",
+    amount: data.result.amount,
+    deposit:  data.result.deposit,
+    out_order_no:  data.result.out_order_no,
+    overdue_time: data.result.overdueTime,
+    order_process_url: "alipays://platformapi/startapp?appId=2018050202621373&page='../myOrder/myOrder'",
+    item_id: "2018050901000222123471795029",
+    subject: {
+        "products": [
+            {   "count": data.result.count,   /** 商品件数 */
+                "amount": data.result.amount,  /**分期总金额*/
+                "deposit": data.result.deposit, /**总押金*/
+                "installmentCount": data.result.installmentCount,  /**分期数*/
+                "name": encodeURIComponent(data.result.name) /** 商品名 */
+            }]
+    },
+    success: (res) => {
+      console.log(res)
+      my.hideLoading()
+       return;
+       
+  
+
+
+
+      
+       my.navigateTo({
+               // 跳转至确定订单页
+              url: '../confirmOrder/confirmOrder?zmOrderNo='+res.orderNo+
+              '&outOrderNo='+res.outOrderNo
+              +'&name='+data.result.name+'&amount='+data.result.amount+
+              '&count='+data.result.count+'&deposit='+data.result.deposit
+              +'&installmentCount='+data.result.installmentCount
+              +'&rentAmount='+data.result.rentAmount+
+              '&totalDeposit='+data.result.totalDeposit
+              +'&selectedgoodstr='+selectedgoodstr+'&installmentDate='+data.result.installmentDate
+
+              
+            }) 
+              
+    },
+    fail: (res) => {
+    }
+});
+
+
+
+      },
+      fail: (err) => {
+       my.hideLoading();
+
+      },
+  })
+  },
+  select(e){
+     goodstring="";
+     selectedgoodstr="";
+    var that=this
+    if(e.target.dataset.num==='0'){//如果该商品数量为0
+       return;
+    }
+    if(selectedgood[e.target.dataset.idx]===e.target.dataset.val){//如果该商品已经被选择
+     //selectedgood.del(e.target.dataset.idx);
+     //selectedgood[e.target.dataset.idx]=""
+     delete selectedgood[e.target.dataset.idx]
+    }else{
+     selectedgood[e.target.dataset.idx]=e.target.dataset.val;
+    }
+    //console.log(selectedgood)
+    const selectedgoodarr=Object.keys(selectedgood)
+    //console.log(selectedgoodarr.length)
+    //const selectedgoodstr=selectedgood.join(',')
+    //console.log(selectedgood)
+    //console.log(selectedgoodstr)
+    //for(var i=0;i<selectedgoodarr.length;i++){
+     // if(selectedgood[i]){
+     //   goodstring+= selectedgood[i]+";";
+    // }
+    //}
+    selectedgoodarr.forEach(function(key){
+     //console.log(selectedgood[key]);
+     goodstring+= selectedgood[key]+";";
+     selectedgoodstr+= selectedgood[key]+","
+    });
+    selectedgoodstr = selectedgoodstr.substr(0, selectedgoodstr.length - 1); 
+    goodstring =goodstring.substr(0, goodstring.length - 1);   
+    
+    //console.log(goodstring)
+    //console.log(selectedgood)
+    //console.log(selectedgoodstr)
+
+
+
+    this.setData({
+      goodstring,
+      selectedgood,
+      selectedgoodstr,
+      sellength:selectedgoodarr.length
+    })
+      console.log(that.data.sellength==that.data.propes.length)
+    if(selectedgoodarr.length===that.data.propes.length){
+      //console.log(that.data.resultlist);
+      for (var i=0;i<that.data.resultlist.length;i++){
+        if(that.data.resultlist[i].propertieNames===selectedgoodstr){
+          console.log(that.data.resultlist[i]);
+          that.setData({
+            saleprice:that.data.resultlist[i].shopPrice,
+            salesnum:that.data.resultlist[i].salesNum,
+            resultObj:that.data.resultlist[i]
+          }) 
+          return;
+        }
+      }
+       that.setData({
+            salesnum:0
+          }) 
+      return;
+    }
+  },
+  getAlipayUserInfo(code){
+    const that=this
+     const myparams =new Object();
+   myparams.code=code;
+  network.post({
+     url: urls.getAlipayUserInfo,
+     params: myparams,
+     success: (data) => {
+       console.log(data.result.aliid,that.data.resultObj.id,that.data.resultObj.commodityId)
+       this.submissionorder(data.result.aliid,that.data.resultObj.id,that.data.resultObj.commodityId)
+  }
+  })
+  },
+});
+Array.prototype.del=function(index){  
+        if(isNaN(index)||index>=this.length){  
+            return false;  
+        }  
+        for(var i=0,n=0;i<this.length;i++){  
+            if(this[i]!=this[index]){  
+                this[n++]=this[i];  
+            }  
+        }  
+        this.length-=1;  
+    }; 
+
+
+
+
+    

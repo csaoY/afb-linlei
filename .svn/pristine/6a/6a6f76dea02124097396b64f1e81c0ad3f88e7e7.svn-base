@@ -1,0 +1,67 @@
+
+<view>
+  <view class="good-info">
+    <view class="img-wrapper">
+      <image src="/img/phone.png" mode="widthFix" style="width:60px;height:60px;" />
+    </view>
+    <view class="detail">
+      <view class="title">{{info.goodsName}}</view>
+      <view class="guige">
+        规格：{{info.specifications}}
+      </view>
+      <view class="rent">总租金：￥{{info.totalRent}}</view>
+      <view class="zhima">芝麻信用.免押金</view>
+    </view>
+  </view>
+  <view style="padding:0 30rpx;background: #fff;">
+<view class="rent-wrapper">
+    <view class="rent-detail" style="text-align:left">
+      <view class="num">{{info.totalRent}}</view>
+      <view class="point">应还租金</view>
+    </view>
+     <view class="rent-detail">
+      <view class="num">{{info.alreadyPrice}}</view>
+      <view class="point">已还租金</view>
+    </view>
+     <view class="rent-detail" style="text-align:right">
+      <view class="num">{{info.surplusPrice}}</view>
+      <view class="point">待还租金</view>
+    </view>
+  </view>
+  <view style="padding:0 0 16px 10px;color:#999;font-size:12px;">
+  账单到期将通过支付宝免密方式支付，请注意信息</view>
+</view>
+
+  
+
+<view class="bill-wrapper">
+
+<block a:for="{{info.listRepayments}}">   
+  <view class="bill {{item.status=='UNPAID'?'doing':'done'}}">
+  <view class="bill-list">
+    <view class="list-head">
+      <view class="left">{{item.leasePeriod}}期</view>
+      <view class="right">{{item.status=='UNPAID'?'待付款':'已付款'}}</view>
+    </view>
+    <view class="list-body">
+      <view class="left"><text style="font-size:10px;">￥</text>{{item.repayPrice}}</view>
+      <view class="right">{{item.repayTime}}通过支付宝免密支付还款 </view>
+    </view>
+  </view>
+</view>
+</block>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

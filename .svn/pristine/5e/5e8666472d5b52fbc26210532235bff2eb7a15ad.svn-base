@@ -1,0 +1,90 @@
+
+<view>
+  <view class="good-info">
+    <view class="img-wrapper">
+      <image src="/img/phone.png" mode="widthFix" style="width:60px;height:60px;" />
+    </view>
+    <view class="detail">
+      <view class="title">苹果手机</view>
+      <view class="guige">
+        规格：亮黑色
+      </view>
+      <view class="rent">总租金：898.00</view>
+      <view class="zhima">芝麻信用.免押金</view>
+    </view>
+  </view>
+  <view style="padding:0 30rpx;background: #fff;">
+<view class="rent-wrapper">
+    <view class="rent-detail">
+      <view class="num">30000</view>
+      <view class="point">应还租金</view>
+    </view>
+     <view class="rent-detail">
+      <view class="num">30000</view>
+      <view class="point">应还租金</view>
+    </view>
+     <view class="rent-detail">
+      <view class="num">30000</view>
+      <view class="point">应还租金</view>
+    </view>
+  </view>
+  <view style="padding:0 0 16px 0;color:#999;font-size:12px;">
+  账单到期将通过支付宝免密方式支付，请注意信息</view>
+</view>
+
+  
+
+<view class="bill-wrapper">
+<view class="bill doing">
+  <view class="bill-list">
+    <view class="list-head">
+      <view class="left">7/9期</view>
+      <view class="right">待还款</view>
+    </view>
+    <view class="list-body">
+      <view class="left">399</view>
+      <view class="right">的感觉爱哭鬼克隆空间就就 </view>
+    </view>
+  </view>
+</view>
+<view class="bill doing">
+  <view class="bill-list">
+    <view class="list-head">
+      <view class="left">7/9期</view>
+      <view class="right">待还款</view>
+    </view>
+    <view class="list-body">
+      <view class="left">399</view>
+      <view class="right">的感觉爱哭鬼克隆空间就就 </view>
+    </view>
+  </view>
+</view>
+<view class="bill doing">
+  <view class="bill-list">
+    <view class="list-head">
+      <view class="left">7/9期</view>
+      <view class="right">待还款</view>
+    </view>
+    <view class="list-body">
+      <view class="left">399</view>
+      <view class="right">的感觉爱哭鬼克隆空间就就 </view>
+    </view>
+  </view>
+</view>
+
+<view class="bill done">
+  <view class="bill-list">
+    <view class="list-head">
+      <view class="left">7/9期</view>
+      <view class="right">待还款</view>
+    </view>
+    <view class="list-body">
+      <view class="left">399</view>
+      <view class="right">的感觉爱哭鬼克隆空间就就 </view>
+    </view>
+  </view>
+</view>
+
+
+
+</view>

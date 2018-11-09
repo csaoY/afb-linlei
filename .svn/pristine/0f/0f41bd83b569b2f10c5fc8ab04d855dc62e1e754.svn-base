@@ -1,0 +1,52 @@
+import util from '/utils/util'
+import urls from '/utils/urls'
+import network from '/utils/network'
+Page({
+  data: {},
+  onLoad() {
+    this.getcode()
+
+  },
+    getcode(){
+         const that=this;
+        my.getAuthCode({  
+      scopes: 'auth_user', 
+      success: (res) => { 
+       this.getAlipayUserInfo(res.authCode);
+      
+
+
+         },
+          });
+
+  },
+    getAlipayUserInfo(code){
+    const that=this
+     const myparams =new Object();
+   myparams.code=code;
+  network.post({
+     url: urls.getAlipayUserInfo,
+     params: myparams,
+     success: (data) => {
+       this.orderList()
+  }
+  })
+  },
+  orderList(){
+     const myparams1 =new Object();
+  network.post({
+     url: urls.orderList,
+     params: myparams1,
+     success: (data) => {
+       console.log(data.result[1])
+      this.setData({
+        lsit:data.result
+      })
+      },
+      fail: () => {
+     
+      },
+  })
+  }
+  
+});

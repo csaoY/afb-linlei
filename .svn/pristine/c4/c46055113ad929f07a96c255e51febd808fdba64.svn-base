@@ -1,0 +1,75 @@
+page{
+    background:#f5f5f5;
+}
+.tab{
+    display:flex;height:44px;background: #fff;position:fixed;top:0;lef:0;width:100%;
+}
+.tab>view{
+    flex:1;text-align:center;
+}
+.tab>view>text{
+    line-height:42px;font-size:16px;
+    display:inline-block;width:48px;text-align:center;
+}
+.tab>view.active>text{
+border-bottom:2px solid #00c0a3;
+}
+
+
+
+.order{
+    background: #fff;margin-top:10px;
+}
+.order>.order-header{
+    padding:0 30rpx;height:45px;line-height:45px;
+    display:flex;border-bottom:1px solid #f5f5f5;
+
+}
+.order>.order-header>view{
+    line-height:45px;
+}
+.order>.order-header>view:first-child{
+    flex:2
+}
+.order>.order-header>.state{
+    flex:1;text-align:right;
+}
+.order>.order-body{
+    padding:20px 30rpx;display:flex
+}
+.order>.order-body>.img-wrapper{
+
+width:100px;height:100px;background: #f5f5f5;text-align:center;margin-right:10px;
+}
+.order>.order-body>.img-wrapper>image{
+    width:80px;margin-top:10px;
+}
+.order>.order-body>.body-right{
+    flex:1;
+}
+.order>.order-body>.body-right>.title{
+font-size:14px;color:#333;width:99%;
+   overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.order>.order-body>.body-right>.guige{
+    margin-top:10px;color:#999;
+}
+.order>.order-body>.body-right>.rent{
+    font-size:14px;color:#333;margin-top:8px;
+}
+.order>.order-foot{
+    padding:0 30rpx 20px 30rpx;text-align:right;
+}
+.order>.order-foot>view{
+    font-size:12px;color:#00c0a3;width:80px;display:inline-block;
+    height:24px;line-height:24px;text-align:center;border-radius:12px;
+    border:1px solid #00c0a3;margin-left:12px;
+}
+.order>.order-foot>view.confirm{
+    background:#00c0a3;color:#fff;
+}
+.zhima{
+    border:1px solid #1ccfc9;color:#1ccfc9;display:inline-block;padding:2px 4px;font-size:10px;margin-top:10px;
+}

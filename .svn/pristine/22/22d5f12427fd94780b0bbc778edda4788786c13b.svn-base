@@ -1,0 +1,81 @@
+
+ <view style="padding:0 30px;text-align:center;margin-top:120px;">
+  <image src="/img/noorder.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;color:#666">目前暂无订单</view>
+  <view class="long-btn">返回首页</view>
+</view>
+ <view style="padding:0 30px;text-align:center;margin-top:120px;">
+  <image src="/img/error.png" mode="widthFix"  style="width:140px;"/>
+  <view style="margin:10px 0 30px 0;text-align:center;color:#666">系统异常，请重试</view>
+  <view class="long-btn">重试</view>
+</view>
+<view>
+  <view class="tab">
+    <view class="active">
+      <text>全部</text>
+      </view>
+    <view> <text>待发货</text></view>
+    <view> <text>待收货</text></view>
+    <view> <text>租赁中</text></view>
+  </view>
+
+
+  <view class="order">
+    <view class="order-header">
+      <view>2017.5.8 19:90</view>
+      <view class="state">待发货</view>
+    </view>
+    <view class="order-body">
+      <view class="img-wrapper">
+        <image src="/img/phone.png" mode="widthFix" />
+      </view>
+      <view class="body-right">
+        <view class="title">APPLE 苹果手机</view>
+        <view class="guige">规格：jkdsagj</view>
+        <view class="rent">租金：￥8577</view>
+      </view>
+    </view>
+    <view class="order-foot clear">
+      <view>取消订单</view>
+    </view>
+  </view>
+   <view class="order">
+    <view class="order-header">
+      <view>2017.5.8 19:90</view>
+      <view class="state">待发货</view>
+    </view>
+    <view class="order-body">
+      <view class="img-wrapper">
+        <image src="/img/phone.png" mode="widthFix" />
+      </view>
+      <view class="body-right">
+        <view class="title">APPLE 苹果手机</view>
+        <view class="guige">规格：jkdsagj</view>
+        <view class="rent">租金：￥8577</view>
+      </view>
+    </view>
+    <view class="order-foot clear">
+      <view>取消订单</view>
+    </view>
+  </view>
+   <view class="order">
+    <view class="order-header">
+      <view>2017.5.8 19:90</view>
+      <view class="state">待发货</view>
+    </view>
+    <view class="order-body">
+      <view class="img-wrapper">
+        <image src="/img/phone.png" mode="widthFix" />
+      </view>
+      <view class="body-right">
+        <view class="title">APPLE 苹果手机</view>
+        <view class="guige">规格：jkdsagj</view>
+        <view class="rent">租金：￥8577</view>
+      </view>
+    </view>
+    <view class="order-foot clear">
+      <view class="cencel">取消订单</view>
+      <view class="confirm">确认收货</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,33 @@
+<view>
+ <view class="header">
+   <view  a:if="{{length>0?true:false}}"class="{{currentIndex==0?'active':''}}" data-index=0 onTap="changeIndex">{{myArea.pro}}</view>
+   <view  a:if="{{length>1?true:false}}"class="{{currentIndex==1?'active':''}}" data-index=1 onTap="changeIndex">{{myArea.city}}</view>
+   <view  a:if="{{length>2?true:false}}"class="{{currentIndex==2?'active':''}}" data-index=2 onTap="changeIndex">{{myArea.area}}</view>
+   <view a:if="{{length<3?true:false}}"  class="{{length<3&issel?'active':''}}">请选择</view>
+  </view>
+
+  <scroll-view class="good-view" >
+<view class="area-wrapper" a:if="{{currentIndex==0?true:false}}">
+  <block a:for="{{prolist}}">
+    <view class="area-list" onTap="selectPro" data-city="{{item.cityList}}" data-pro="{{item.provinceList.province}}">{{item.provinceList.province}}</view>
+  </block>
+</view>
+<view class="area-wrapper" a:if="{{currentIndex==1?true:false}}">
+  <block a:for="{{citylist}}">
+    <view class="area-list" onTap="selectCity" data-area="{{item.districtList}}" data-city="{{item.city}}">{{item.city}}</view>
+  </block>
+</view>
+
+<view class="area-wrapper" a:if="{{currentIndex==2?true:false}}">
+  <block a:for="{{arealist}}">
+    <view class="area-list" onTap="selectArea" data-area="{{item.district}}">{{item.district}}</view>
+  </block>
+</view>
+</scroll-view>
+  
+
+    
+
+
+
+</view>

@@ -1,0 +1,49 @@
+
+// GET请求
+function GET(_requestHandler) {
+  request('GET', _requestHandler);
+}
+// POST请求
+function POST(_requestHandler) {
+  request('POST', _requestHandler);
+}
+
+function request(_method, _requestHandler) {
+  //_requestHandler.params.channel = 1;
+  // 注意：可以对params加密等处理
+   _requestHandler.params.channel = 1;
+    _requestHandler.params.os = 'zfbMiniProgram';
+     _requestHandler.params.v = '1.0';
+  my.httpRequest({
+    url: _requestHandler.url,
+    data: _requestHandler.params,
+    method: _method, // OPTIONS, GET, HEAD, POST
+    // header: {}, // 设置请求的 header
+    success: (res) => {
+      // 注意：可以对参数解密等处理
+      //   my.alert({ title: String(res.status) });
+      if(res.data.success){
+       // console.log(res)
+         _requestHandler.success(res.data);
+         return;
+      }
+      if(!res.data.success){
+        console.log(res.data.msg)
+          _requestHandler.fail(res.data);
+      }
+    },
+    fail: (err) => {
+      console.log(err)
+      _requestHandler.fail(err);
+    },
+    complete: () => {
+      // complete
+    },
+  });
+}
+
+
+module.exports = {
+  get: GET,
+  post: POST,
+};

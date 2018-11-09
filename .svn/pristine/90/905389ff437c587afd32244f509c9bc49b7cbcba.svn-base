@@ -1,0 +1,216 @@
+<view>
+  <view class="header">
+
+    <view class="state">
+        <image src="/img/fahuo.png" mode="widthFix" />
+        待发货
+      </view>
+<view class="other-wrapper">
+   <view class="daoyu">订单已推送给商家备货，请耐心等待</view>
+      <view class="time">2017年11月25日09：30</view>
+</view>
+     
+
+    
+     <view class="user-info">
+    <view class="title">
+     {{info.name}} <text class="number">{{info.mobile}}</text>
+    </view>
+    <view class="adress-wrapper">
+      <view class="adress">{{info.address}}</view>
+      <view class="notice">如需修改地址，请取消订单，重新下单并在信息确认页面进行修改</view>
+    </view>
+  </view>
+
+ <view class="good-info">
+    <view class="img-wrapper">
+      <image src="{{imgSrc+info.thumbImg}}" mode="widthFix" style="width:60px;height:60px;" />
+    </view>
+    <view class="detail">
+      <view class="title">{{info.goodsName}}</view>
+      <view class="guige">
+        规格：{{info.specifications}}
+      </view>
+      <view class="rent">总租金：￥{{info.totalRent}}</view>
+      <view class="zhima" v-if="{{state}}">芝麻信用.免押金</view>
+    </view>
+  </view>
+  <view style="height:10px;background:#f5f5f5;"></view>
+  <view class="box-wrapper">
+    <view class="box-list">
+      <view>总租金</view>
+      <view>￥{{info.totalRent}}</view>
+    </view>
+     <view class="box-list">
+      <view class="que">赠送意外保障
+      </view>
+      <view>&7751</view>
+    </view>
+     <view class="box-list">
+      <view>月租金</view>
+      <view>￥{{info.shopPrice}}</view>
+    </view>
+     <view class="box-list">
+      <view>租期</view>
+      <view>{{info.installmentDate}}</view>
+    </view>
+     <view class="box-list">
+      <view>租金付款方式</view>
+      <view class="que" onTap="mianmi">支付宝免密支付</view>
+    </view>
+  </view>
+  <view class="box-wrapper">
+    <view class="box-list">
+      <view>总押金</view>
+      <view>￥{{info.price}}</view>
+    </view>
+     <view class="box-list" v-if="{{state}}">
+      <view>芝麻信用免押金</view>
+      <view>-￥{{info.exemptedAmount}}</view>
+    </view>
+     <view class="box-list" v-if="{{state}}">
+      <view>需冻结押金</view>
+      <view>￥{{(info.price-info.exemptedAmount).toFixed(2)}}</view>
+    </view>
+     <view class="box-list">
+      <view>押金冻结方式</view>
+      <view class="que" onTap="zijin">支付宝资金授权</view>
+    </view>
+  </view>
+  <view style="height:10px;background:#f5f5f5"></view>
+   <view class="box-wrapper">
+  
+     <view class="box-list" v-if="{{state}}">
+      <view>订单编号</view>
+      <view>{{info.aliOrderNo}}</view>
+    </view>
+     <view class="box-list">
+      <view>下单时间</view>
+      <view onTap="zijin">{{info.created}}</view>
+    </view>
+  </view>
+
+
+
+
+
+
+
+<view class="bg" a:if="{{mianmi||zijin}}"></view>
+
+<view class="alert-box" a:if="{{mianmi}}">
+  <view class="title">支付宝免密支付</view>
+  <view class="content">服务完结进行结算时，实际费用由商户发起向用户支付宝账户扣款</view>
+  <view class="close-alert" onTap="closeBox">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+<view class="alert-box" a:if="{{zijin}}">
+  <view class="title">支付宝资金授权</view>
+  <view class="content">用户使用服务时，通过支付宝账户资金渠道做相应金额的授权，并不产生实际消费</view>
+  <view class="close-alert" onTap="closeBox">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<view style="height:50px;"></view>
+  <view class="bot">
+  <button type="default" size="defaultSize" onTap="defaultTap">查看订单 </button>
+  <button type="default" size="defaultSize" onTap="toBill" data-orderId="{{info.orderId}}">查看账单 </button>
+  <button type="default" size="defaultSize" catchTap="cancelOrder" data-orderId="{{info.orderId}}">取消订单 </button>
+  <button type="default" size="defaultSize" onTap="defaultTap"
+   style="background:#0dd7aa;color:#fff;" onTap="collectGood">确认收货 </button>
+  </view>
+</view>
+<view class="bg" a:if="{{false}}"></view>
+<view class="alert-box" a:if="{{false}}">
+  <view class="title">确认收货</view>
+  <view class="content">确认收货的流程以及其他问题哈哈哈哈哈哈哈哈哈哈哈哈或</view>
+  <view class="footer-option">
+    <view class="btn">取消</view>
+    <view class="btn">确认</view>
+  </view>
+</view>
+<view class="alert-box" a:if="{{false}}">
+  <view class="title">支付宝免密支付</view>
+  <view class="content">确认收货的流程以及其他问题哈哈哈哈哈哈哈哈哈哈哈哈或</view>
+  <view class="close-alert">
+    <image src="/img/close-alert.png" mode="widthFix" />
+  </view>
+</view>
+
+<view class="bg" a:if="{{cancel}}"></view>
+<view class="alert-box" a:if="{{cancel}}">
+  <view class="title">取消订单</view>
+  <view class="content">
+    <view class="why">取消原因</view>
+    <block a:for="{{cancelOrderReason}}">
+     <view class="list"  onTap="selectReason" data-index="{{index}}">
+      <view class="one {{reasonIdx==index?'active':''}}"></view>
+      <view class="two">{{item}}</view>
+    </view>
+    </block>
+  </view>
+  <view class="footer-option">
+    <view class="btn" onTap="cancelcancel">取消</view>
+    <view class="btn" onTap="confirmcancel">确认</view>
+  </view>
+</view>

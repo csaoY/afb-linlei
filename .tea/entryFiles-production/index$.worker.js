@@ -1,0 +1,21 @@
+require('./config$');
+require('./importScripts$');
+function success() {
+require('../..//app');
+require('../../pages/linlei/linlei');
+require('../../pages/me/me');
+require('../../pages/goodDetail/goodDetail');
+require('../../pages/confirmOrder/confirmOrder');
+require('../../pages/successOrder/successOrder');
+require('../../pages/failOrder/failOrder');
+require('../../pages/myOrder/myOrder');
+require('../../pages/orderDetail/orderDetail');
+require('../../pages/logistics/logistics');
+require('../../pages/text/text');
+require('../../pages/bill/bill');
+require('../../pages/back/back');
+require('../../pages/help/help');
+require('../../pages/selectArea/selectArea');
+require('../../pages/agreement/agreement');
+}
+self.bootstrapApp ? self.bootstrapApp({ success }) : success();

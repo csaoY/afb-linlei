@@ -1,0 +1,33 @@
+.top{
+    text-align:center;padding:30px 0;
+}
+.top>image{
+     width:90px;
+}
+
+.top>.sec{
+    margin-top:10px;
+}
+
+.top>view>image{
+    width:101.5px;height:11.5px;margin-top:10px;
+}
+.btn-wrapper{
+    padding:30px 30rpx;display:flex;justify-content:space-between
+}
+.btn-wrapper>button{
+width:330rpx;height:44px;border:none;border-radius:22px;
+}
+.btn-wrapper>button:first-child{
+    border:1px solid #00c0a3;color:#00c0a3;
+}
+.btn-wrapper>button:nth-child(2){
+    color:#fff;background: #00c0a3;
+}
+
+.footer{
+    text-align:center;
+}
+.footer>image{
+    width:80%;margin-bottom:20px;
+}

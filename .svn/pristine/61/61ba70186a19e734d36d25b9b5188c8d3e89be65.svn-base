@@ -1,0 +1,182 @@
+import util from '/utils/util'
+import urls from '/utils/urls'
+import network from '/utils/network'
+let pageNo=1;
+let list=[];
+let hasmore=true;
+let state=1;
+Page({
+  data: {
+    loaded:false,
+    err:false,
+    hasmore:true,
+    currentIndex:0
+  },
+  onLoad() {
+    //this.getcode()
+     this.orderList()
+
+  },
+    getcode(){
+       my.showLoading({
+     content: '加载中...',
+     delay: 0,
+   });
+         const that=this;
+        my.getAuthCode({  
+      scopes: 'auth_user', 
+      success: (res) => { 
+       this.getAlipayUserInfo(res.authCode);
+      
+
+
+         },
+          });
+
+  },
+    getAlipayUserInfo(code){
+    const that=this
+     const myparams =new Object();
+   myparams.code=code;
+  network.post({
+     url: urls.getAlipayUserInfo,
+     params: myparams,
+     success: (data) => {
+       this.orderList()
+  }
+  })
+  },
+  orderList(){
+     const myparams1 =new Object();
+     myparams1.currentPage=pageNo;
+     myparams1.queryStatus=state;
+     if(hasmore){
+       hasmore=false;
+  network.post({
+     url: urls.orderList,
+     params: myparams1,
+     success: (data) => {
+       console.log(pageNo)
+//console.log(data.result)
+if(data.result.length==15){
+  hasmore=true;
+}
+  for (var i = 0; i < data.result.length; i++) {
+          list.push(data.result[i])
+        }
+      this.setData({
+        imgsrc:data.imgSrc,
+        list,
+        loaded:true,
+        err:false
+      })
+      pageNo++;
+      my.hideLoading();
+      },
+      fail: () => {
+    this.setData({
+         loaded:true,
+         err:true,
+      })
+      my.hideLoading();
+      },
+  })
+     }
+
+  },
+  backToIndex(){
+     my.switchTab({
+     url:'../linlei/linlei'
+   })
+  },
+  onPullDownRefresh() {
+      const myparams1 =new Object();
+  network.post({
+     url: urls.orderList,
+     params: myparams1,
+     success: (data) => {
+         my.stopPullDownRefresh()
+       console.log(data)
+        console.log(data.result[1])
+        console.log(data.result.length)
+      this.setData({
+        imgsrc:data.imgSrc,
+        list:data.result,
+        loaded:true,
+        err:false
+      })
+      my.hideLoading();
+      },
+      fail: () => {
+          my.stopPullDownRefresh()
+      
+    this.setData({
+         loaded:true,
+         err:true,
+      })
+      my.hideLoading();
+     
+      },
+  })
+},
+getList(e){//点击顶部
+  console.log(e.target.dataset.state)
+  this.setData({
+    currentIndex:e.target.dataset.idx
+  })
+  if(state==e.target.dataset.state){
+    return 
+  }
+  state=e.target.dataset.state;
+  list=[];
+  hasmore=true; 
+  pageNo=1;
+  
+  this.orderList();
+  
+},
+
+
+redo(){//系统异常，重试
+    my.showLoading({
+     content: '加载中...',
+     delay: 0,
+   });
+      const myparams1 =new Object();
+  network.post({
+     url: urls.orderList,
+     params: myparams1,
+     success: (data) => {
+         my.stopPullDownRefresh()
+      this.setData({
+        imgsrc:data.imgSrc,
+        list:data.result,
+        loaded:true,
+        err:false
+      })
+      my.hideLoading();
+      },
+      fail: () => {
+          my.stopPullDownRefresh()
+      
+    this.setData({
+         loaded:true,
+         err:true,
+      })
+      my.hideLoading();
+     
+      },
+  })
+},
+toOrderDeteil(e){
+  console.log(e.target.dataset.orderId);
+  my.navigateTo({
+    url:"../orderDetail/orderDetail?orderId="+e.target.dataset.orderId
+  });
+
+},
+onReachBottom(){
+  this.orderList()
+}
+  
+});

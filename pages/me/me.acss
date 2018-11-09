@@ -1,0 +1,35 @@
+page{
+     background: #f5f5f5;
+}
+.option-wrapper{
+    padding-left:20rpx;border-bottom:#ddd 1px solid;background: #fff;
+}
+.option-wrapper .option{
+    height:45px;line-height:45px;border-bottom:#ddd 1px solid;
+    padding-left:10rpx;display:flex;position:relative;
+}
+.option-wrapper .option:last-child{
+border-bottom:none;
+}
+.option-wrapper .option image{
+    width:40rpx;height:40rpx;position: absolute;right:30rpx;top:50%;margin-top:-20rpx;
+}
+.kefu-wrapper{
+position:fixed;bottom:20px;width:100%;text-align:center;
+}
+.kefu{
+    display:flex;flex-direction: row;align-items: center;margin:0 auto;
+     font-size:14px;color:#999;justify-content: center;
+}
+.kefu>.line{
+width:10px;height:1px;background:#999;display:inline-block;
+}
+.kefu>view{
+    display:inline-block
+}
+.kefu text{
+    color:#108ee9;
+}
+.kefu .content{
+    margin:0 10px;
+}
